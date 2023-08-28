@@ -15,6 +15,11 @@
 .animation-hover:hover:after {
   @apply left-0 w-full;
 }
-.pvl-btn:hover{
-  background: linear-gradient(170deg, #A259FF 0%, #377DF7 100%), #A259FF;
+.pvl-btn:hover {
+  background: linear-gradient(170deg, #a259ff 0%, #377df7 100%), #a259ff;
+}
+.user-timer {
+  border-radius: 20px;
+  background: rgba(59, 59, 59, 0.5);
+  backdrop-filter: blur(5px);
 }
