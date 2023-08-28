@@ -19,7 +19,7 @@ const cardItems = [
 ];
 const SectionHowWorks = () => {
   return (
-    <div className="bg-[#2B2B2B]">
+    <div className="bg-[#2B2B2B] border-none">
       <div className="container mx-auto px-8 py-10 space-y-10 md:px-12 xl:px-[130px] 2xl:px-[195px]">
         <div className="space-y-2.5 mb-10">
           <h1 className="font-work text-[28px] font-semibold leading-[39px] text-white">
