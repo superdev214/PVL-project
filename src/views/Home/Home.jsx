@@ -3,6 +3,8 @@ import Navbar from "../../ui-elements/Navbar";
 import SectionDiscoverAccount from "./components/SectionDiscoverAccounts";
 import SectionTopSelling from "./components/SectionTopSelling";
 import SectionNFTShop from "./components/SectionNFTShop";
+import SectionHowWorks from "./components/SectionHowWorks";
+
 const Home = () => {
   return (
     <>
@@ -11,6 +13,7 @@ const Home = () => {
         <SectionDiscoverAccount/>
         <SectionTopSelling/>
         <SectionNFTShop/>
+        <SectionHowWorks/>
       </div>
     </>
   );
