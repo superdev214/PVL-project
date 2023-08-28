@@ -43,7 +43,7 @@ const Navbar = () => {
                   // }
                   className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
                 >
-                  MerketPlace
+                  MarketPlace
                 </a>
                 <a
                   href="/"
