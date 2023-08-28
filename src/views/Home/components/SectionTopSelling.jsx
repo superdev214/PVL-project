@@ -1,7 +1,7 @@
 import React from "react";
 import SellingAccount from "./SellingAccount";
 import ButtonOutline from "../../../ui-elements/buttons/ButtonOutline";
-
+import { motion } from "framer-motion";
 const fakeAccount = [
   { type: "netflix", price: 6 },
   { type: "spotify", price: 5 },
@@ -25,12 +25,12 @@ const SectionTopSelling = () => {
             </p>
           </div>
           <div className="hidden md:block">
-          <ButtonOutline
-            content="Explore More"
-            userClass="w-full"
-            type="secondary"
-          />
-        </div>
+            <ButtonOutline
+              content="Explore More"
+              userClass="w-full"
+              type="secondary"
+            />
+          </div>
         </div>
         {/* account list */}
         <div className="space-y-5 md:space-y-0  md:grid md:grid-cols-2 md:gap-x-[30px] md:gap-y-[30px] xl:grid-cols-4  xl:gap-x-[30px] xl:gap-y-[30px]">
@@ -41,6 +41,7 @@ const SectionTopSelling = () => {
                 order={id + 1}
                 key={id}
                 price={account.price}
+                i={id}
               />
             );
           })}

@@ -1,10 +1,10 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 const SellingAccount = (props) => {
-  const { type, order, price } = props;
+  const { type, order, price, i } = props;
   return (
     <>
-      <div className="p-5 flex gap-x-5 bg-[#3B3B3B] rounded-[20px] relative xl:block xl:space-y-5">
+      <motion.div className="p-5 flex gap-x-5 bg-[#3B3B3B] rounded-[20px] relative xl:block xl:space-y-5 border-2 hover:border-orange-500 hover:shadow-orange-700 hover:cursor-pointer">
         <img
           alt="noIMG"
           src={`./assets/${type}.png`}
@@ -27,7 +27,7 @@ const SellingAccount = (props) => {
             </h5>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
