@@ -15,3 +15,6 @@
 .animation-hover:hover:after {
   @apply left-0 w-full;
 }
+.pvl-btn:hover{
+  background: linear-gradient(170deg, #A259FF 0%, #377DF7 100%), #A259FF;
+}

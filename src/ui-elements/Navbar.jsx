@@ -23,7 +23,7 @@ const Navbar = () => {
     >
       {/* main navbar */}
       <nav>
-        <div className="container mx-auto px-4 py-2">
+        <div className="container mx-auto px-8 py-2">
           <div className="flex items-center justify-between ">
             <div className="flex items-center space-x-9">
               <img className="h-10 w-10" src="/assets/pvl.png" alt="Workflow" />
