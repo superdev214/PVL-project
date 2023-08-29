@@ -7,7 +7,7 @@ const Login = () => {
     <div>
       <Navbar />
       <div className="bg-[#2B2B2B]">
-        <div className="container mx-auto px-[30px] md:grid md:grid-cols-2 md:gap-x-10">
+        <div className="container pt-[80px] mx-auto px-[30px] md:grid md:grid-cols-2 md:gap-x-10">
           <img
             src="./assets/PLV-login-mobile.png"
             className="w-full md:hidden"

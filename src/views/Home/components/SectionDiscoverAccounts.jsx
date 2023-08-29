@@ -9,7 +9,7 @@ const SectionDiscoverAccount = () => {
   return (
     <ScrollAnimationWrapper>
       <motion.div variants={scrollAnimation} className="bg-[#2B2B2B] mt-16">
-        <div className="container mx-auto py-10 lg:py-[80px] w-full grid md:grid-cols-2 gap-x-[30px] px-8  md:px-12 xl:px-[130px] 2xl:px-[195px] ">
+        <div className="container mx-auto py-10 md:py-[80px] w-full grid md:grid-cols-2 gap-x-[30px] px-8  md:px-12 xl:px-[130px] 2xl:px-[195px] ">
           <div className="grid grid-cols-1 gap-y-[40px] lg:gap-y-[40px] min-w-[315px] md:min-w-[330px] md:gap-y-[20px] xl:max-w-[510px] ">
             <div>
               <h1 className="font-work text-[28px] leading-[39px] mb-[10px] lg:leading-[74px] text-white md:mb-5 font-semibold md:text-[38px] md:leading-[45px] xl:text-[67px]">

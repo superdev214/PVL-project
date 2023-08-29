@@ -3,22 +3,26 @@ import Card from "./Card";
 import getScrollAnimation from "../../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const cardItems = [
   {
     imgSrc: "Pvl-Icon",
     title: "Register to PVL",
     explain: "Register or log in into PVL Shop",
+    to: "/signup"
   },
   {
     imgSrc: "Account-Icon",
     title: "Explore accounts",
     explain: "Explore and find the accounts you want",
+    to: "/"
   },
   {
     imgSrc: "Buy-Account-Icon",
     title: "Buy account you want!",
     explain: "Buy the account you want for cheap!",
+    to: "/"
   },
 ];
 const SectionHowWorks = () => {
@@ -26,7 +30,10 @@ const SectionHowWorks = () => {
   return (
     <ScrollAnimationWrapper>
       <div className="bg-[#2B2B2B] border-none">
-        <motion.div variants={scrollAnimation} className="container mx-auto px-8 py-10 space-y-10 md:px-12 xl:px-[130px] 2xl:px-[195px]">
+        <motion.div
+          variants={scrollAnimation}
+          className="container mx-auto px-8 py-10 space-y-10 md:px-12 xl:px-[130px] 2xl:px-[195px]"
+        >
           <div className="space-y-2.5 mb-10">
             <h1 className="font-work text-[28px] font-semibold leading-[39px] text-white">
               How It Works
@@ -39,12 +46,14 @@ const SectionHowWorks = () => {
             {cardItems.map((item, id) => {
               console.log(item);
               return (
-                <Card
-                  key={id}
-                  imgSrc={item.imgSrc}
-                  title={item.title}
-                  explain={item.explain}
-                />
+                <Link to={item.to} key={id}>
+                  <Card
+                    key={id}
+                    imgSrc={item.imgSrc}
+                    title={item.title}
+                    explain={item.explain}
+                  />
+                </Link>
               );
             })}
           </div>
