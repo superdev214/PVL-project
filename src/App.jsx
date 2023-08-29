@@ -8,15 +8,17 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./views/Login/Login";
+import MarketPlace from "./views/Marketplace/Marketplace";
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/signup" element={<Login />} />
         </Routes>
-      </Router>
+      </Router> */}
+      <MarketPlace/>
     </div>
   );
 }
