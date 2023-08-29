@@ -4,54 +4,47 @@ import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 import AccountTypeCard from "./AccountTypeCard";
 const fakeAccountList = [
-    {
-      id: 1,
-      type: "netflix",
-      life_price: 1.63,
-      six_months_price: 0.33,
-    },
-    {
-      id: 2,
-      type: "spotify",
-      life_price: 1.63,
-      six_months_price: 0.33,
-      color1: "rgba(30, 215, 96, 0.50)",
-    },
-    {
-      id: 3,
-      type: "crunchyroll",
-      life_price: 5.0,
-      six_months_price: 0,
-      color1: "rgba(255, 141, 14, 0.50)",
-    },
-    {
-      id: 4,
-      type: "nordvpn",
-      life_price: 5.0,
-      six_months_price: 0,
-      color1: "rgba(82, 184, 252, 0.50)",
-    },
-    {
-      id: 5,
-      type: "hbo max",
-      life_price: 5.0,
-      six_months_price: 0,
-      color1: "rgba(90, 21, 207, 0.50)",
-    },
-    {
-      id: 6,
-      type: "discord nitro",
-      life_price: 5.0,
-      six_months_price: 15.0,
-      color1: "rgba(140, 158, 255, 0.50)",
-    },
-    {
-      id: 7,
-      type: "unknown prototype",
-      life_price: 5.0,
-      six_months_price: 10.0,
-    },
-  ];
+  {
+    type: "netflix",
+    life_price: 1.63,
+    six_months_price: 0.33,
+  },
+  {
+    type: "spotify",
+    life_price: 1.63,
+    six_months_price: 0.33,
+    color1: "rgba(30, 215, 96, 0.50)",
+  },
+  {
+    type: "crunchyroll",
+    life_price: 5.0,
+    six_months_price: 0,
+    color1: "rgba(255, 141, 14, 0.50)",
+  },
+  {
+    type: "nordvpn",
+    life_price: 5.0,
+    six_months_price: 0,
+    color1: "rgba(82, 184, 252, 0.50)",
+  },
+  {
+    type: "hbo max",
+    life_price: 5.0,
+    six_months_price: 0,
+    color1: "rgba(90, 21, 207, 0.50)",
+  },
+  {
+    type: "discord nitro",
+    life_price: 5.0,
+    six_months_price: 15.0,
+    color1: "rgba(140, 158, 255, 0.50)",
+  },
+  {
+    type: "unknown prototype",
+    life_price: 5.0,
+    six_months_price: 10.0,
+  },
+];
 const CollectionTab = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
@@ -71,7 +64,6 @@ const CollectionTab = () => {
                 life_price={item.life_price}
                 six_months_price={item.six_months_price}
                 color1={item.color1}
-                id={item.id}
               />
             </>
           );
