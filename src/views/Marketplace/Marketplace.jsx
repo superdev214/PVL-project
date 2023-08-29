@@ -9,16 +9,16 @@ const MarketPlace = () => {
   return (
     <>
       <Navbar />
-      <SearchAccount />
-      <Tabs>
-        <Tab label="Account Types" count="249">
-          <AccountTypesTab />
-        </Tab>
-        <Tab label="Collections" count="67">
-          <CollectionTab/>
-        </Tab>
-      </Tabs>
-      <FooterMain/>
+        <SearchAccount />
+        <Tabs>
+          <Tab label="Account Types" count="249">
+            <AccountTypesTab />
+          </Tab>
+          <Tab label="Collections" count="67">
+            <CollectionTab />
+          </Tab>
+        </Tabs>
+      <FooterMain />
     </>
   );
 };

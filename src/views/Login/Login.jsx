@@ -8,7 +8,7 @@ import FooterMain from "../../ui-elements/FooterMain";
 import getUserAnimation from "../../utils/getUserAnimation";
 
 const variants = {
-  onscreen: { opacity: 1, x: 0 },
+  onscreen: { opacity: 1, x: "0" },
   offscreen: { opacity: 0, x: "-100%" },
 };
 const variants_items = {

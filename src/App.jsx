@@ -12,13 +12,13 @@ import MarketPlace from "./views/Marketplace/Marketplace";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/signup" element={<Login />} />
-          <Route path="/marketplace" element={<MarketPlace />} />
-        </Routes>
-      </Router>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/signup" element={<Login />} />
+            <Route path="/marketplace" element={<MarketPlace />} />
+          </Routes>
+        </Router>
     </div>
   );
 }
