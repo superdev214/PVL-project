@@ -19,13 +19,13 @@ const fakeAccountList = [
     color1: "rgba(255, 141, 14, 0.50)",
   },
   {
-    type: "nordVPN",
+    type: "nordVpn",
     life_price: 5.0,
     six_months_price: 0,
     color1: "rgba(82, 184, 252, 0.50)",
   },
   {
-    type: "HBO Max",
+    type: "hbo max",
     life_price: 5.0,
     six_months_price: 0,
     color1: "rgba(90, 21, 207, 0.50)",
