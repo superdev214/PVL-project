@@ -9,7 +9,7 @@ const fakeAccount = [
   { type: "spotify", price: 5 },
   { type: "discord nitro", price: 5 },
   { type: "crunchyroll", price: 5 },
-  { type: "nordVPN", price: 5 },
+  { type: "NordVPN", price: 5 },
 ];
 
 const SectionTopSelling = () => {
