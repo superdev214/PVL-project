@@ -19,7 +19,7 @@ const fakeAccountList = [
     color1: "rgba(255, 141, 14, 0.50)",
   },
   {
-    type: "nordVpn",
+    type: "nordvpn",
     life_price: 5.0,
     six_months_price: 0,
     color1: "rgba(82, 184, 252, 0.50)",
