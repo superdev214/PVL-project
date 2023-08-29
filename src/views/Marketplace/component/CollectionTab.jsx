@@ -1,20 +1,8 @@
-import React, { useMemo, useEffect } from "react";
-import getScrollAnimation from "../../../utils/getScrollAnimation";
-import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import AccountTypeCard from "./AccountTypeCard";
+import { motion } from "framer-motion";
+
 const fakeAccountList = [
-  {
-    type: "netflix",
-    life_price: 1.63,
-    six_months_price: 0.33,
-  },
-  {
-    type: "spotify",
-    life_price: 1.63,
-    six_months_price: 0.33,
-    color1: "rgba(30, 215, 96, 0.50)",
-  },
   {
     type: "crunchyroll",
     life_price: 5.0,
@@ -34,6 +22,18 @@ const fakeAccountList = [
     color1: "rgba(90, 21, 207, 0.50)",
   },
   {
+    type: "netflix",
+    life_price: 1.63,
+    six_months_price: 0.33,
+  },
+  {
+    type: "spotify",
+    life_price: 1.63,
+    six_months_price: 0.33,
+    color1: "rgba(30, 215, 96, 0.50)",
+  },
+
+  {
     type: "discord nitro",
     life_price: 5.0,
     six_months_price: 15.0,
@@ -46,7 +46,7 @@ const fakeAccountList = [
   },
 ];
 const CollectionTab = () => {
-  const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  const [selectedAccount, setSelectedAccount] = useState("1");
   return (
     <div
       style={{
@@ -55,17 +55,25 @@ const CollectionTab = () => {
       }}
     >
       <div className="container mx-auto px-[30px] py-10 grid grid-cols-1 gap-y-[30px] md:grid-cols-2 md:gap-x-[30px] xl:grid-cols-3">
-        {fakeAccountList.map((item) => {
+        {fakeAccountList.map((item, index) => {
           return (
-            <>
+            <div onMouseOver={() => setSelectedAccount(index)}>
               <AccountTypeCard
-                key={item.type}
+                key={index}
                 type={item.type}
                 life_price={item.life_price}
                 six_months_price={item.six_months_price}
                 color1={item.color1}
               />
-            </>
+
+              {/* {selectedAccount === index && (
+                <motion.div
+                  layoutId="border"
+                  layout = "position"
+                  className="absolute border-2 border-orange-700 w-[100px] h-[100px]"
+                ></motion.div>
+              )} */}
+            </div>
           );
         })}
       </div>
