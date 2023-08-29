@@ -33,8 +33,8 @@ const Navbar = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a
-                  href="/"
+                <Link
+                  to="/marketplace"
                   // className={
                   //   "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-[17px] text-white" +
                   //   (activeNavItem === ""
@@ -44,7 +44,7 @@ const Navbar = () => {
                   className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
                 >
                   MarketPlace
-                </a>
+                </Link>
                 <a
                   href="/"
                   className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
@@ -145,12 +145,12 @@ const Navbar = () => {
           {(ref) => (
             <div className="md:hidden container mx-auto" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a
-                  href="/"
+                <Link
+                  to="/marketplace"
                   className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Marketplace
-                </a>
+                </Link>
 
                 <a
                   href="/"
