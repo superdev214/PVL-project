@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useMemo, useEffect } from "react";
+import getScrollAnimation from "../../../utils/getScrollAnimation";
+import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
+import { motion } from "framer-motion";
 import ButtonOutline from "../../../ui-elements/buttons/ButtonOutline";
 
 const SectionDiscoverAccount = () => {
+  const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <>
-      <div className="bg-[#2B2B2B] mt-16">
+    <ScrollAnimationWrapper>
+      <motion.div variants={scrollAnimation} className="bg-[#2B2B2B] mt-16">
         <div className="container mx-auto py-10 lg:py-[80px] w-full grid md:grid-cols-2 gap-x-[30px] px-8  md:px-12 xl:px-[130px] 2xl:px-[195px] ">
           <div className="grid grid-cols-1 gap-y-[40px] lg:gap-y-[40px] min-w-[315px] md:min-w-[330px] md:gap-y-[20px] xl:max-w-[510px] ">
             <div>
@@ -24,7 +28,11 @@ const SectionDiscoverAccount = () => {
               />
             </div>
             <div className="flex">
-              <ButtonOutline type="secondary" content="Get Started" userClass="w-full"/>
+              <ButtonOutline
+                type="secondary"
+                content="Get Started"
+                userClass="w-full"
+              />
             </div>
             <div className="grid grid-cols-2">
               <div className="mark-sale mx-2">
@@ -53,8 +61,8 @@ const SectionDiscoverAccount = () => {
             />
           </div>
         </div>
-      </div>
-    </>
+      </motion.div>
+    </ScrollAnimationWrapper>
   );
 };
 
