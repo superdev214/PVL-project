@@ -5,6 +5,7 @@ import SectionTopSelling from "./components/SectionTopSelling";
 import SectionNFTShop from "./components/SectionNFTShop";
 import SectionHowWorks from "./components/SectionHowWorks";
 import SectionSendEmail from "./components/SectionSendEmail";
+import Footer from "../../ui-elements/Footer";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <SectionNFTShop/>
         <SectionHowWorks/>
         <SectionSendEmail/>
+        <Footer/>
       </div>
     </>
   );
