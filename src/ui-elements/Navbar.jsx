@@ -146,7 +146,7 @@ const Navbar = () => {
             <div className="md:hidden container mx-auto" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a
-                  to="/marketplace"
+                  href="/marketplace"
                   className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Marketplace
