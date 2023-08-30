@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import AccountTypeCard from "./AccountTypeCard";
 import { motion } from "framer-motion";
+import CollectionCard from "./CollectionCard";
 
-const fakeAccountList = [
+const fakeCollectionList = [
   {
     type: "crunchyroll",
     life_price: 5.0,
@@ -39,14 +40,8 @@ const fakeAccountList = [
     six_months_price: 15.0,
     color1: "rgba(140, 158, 255, 0.50)",
   },
-  {
-    type: "unknown prototype",
-    life_price: 5.0,
-    six_months_price: 10.0,
-  },
 ];
 const CollectionTab = () => {
-  const [selectedAccount, setSelectedAccount] = useState("1");
   return (
     <div
       style={{
@@ -55,25 +50,16 @@ const CollectionTab = () => {
       }}
     >
       <div className="container mx-auto px-[30px] py-10 grid grid-cols-1 gap-y-[30px] md:grid-cols-2 md:gap-x-[30px] xl:grid-cols-3">
-        {fakeAccountList.map((item, index) => {
+        {fakeCollectionList.map((item, index) => {
+          console.log(item);
           return (
-            <div onMouseOver={() => setSelectedAccount(index)}>
-              <AccountTypeCard
-                key={index}
-                type={item.type}
-                life_price={item.life_price}
-                six_months_price={item.six_months_price}
-                color1={item.color1}
-              />
-
-              {/* {selectedAccount === index && (
-                <motion.div
-                  layoutId="border"
-                  layout = "position"
-                  className="absolute border-2 border-orange-700 w-[100px] h-[100px]"
-                ></motion.div>
-              )} */}
-            </div>
+            <CollectionCard
+              key={index}
+              type={item.type}
+              life_price={item.life_price}
+              six_months_price={item.six_months_price}
+              color1={item.color1}
+            />
           );
         })}
       </div>
