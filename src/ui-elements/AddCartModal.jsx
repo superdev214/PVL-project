@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames";
 import Modal from "react-modal";
-const AddCartModal = () => {
+const AddCartModal = (props) => {
   const customStyles = {
     content: {
       top: "50%",
@@ -17,8 +17,7 @@ const AddCartModal = () => {
     },
   };
   let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
+  const [modalIsOpen, setIsOpen] = React.useState(true);
   const openModal = () => {
     setIsOpen(true);
   };
@@ -31,23 +30,50 @@ const AddCartModal = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+  useEffect(() => {
+    setIsOpen(props.open);
+  }, []);
   return (
     <Modal
-      isOpen={true}
+      isOpen={modalIsOpen}
       onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
     >
       {/* <button onClick={closeModal}>close</button> */}
-      <div
+      <motion.div
+        animate={modalIsOpen ? "open" : "closed"}
+        transition={{ ease: "easeInOut", duration: 3, times: [0, 0.5, 0.6, 1] }}
         className="w-full h-full"
         style={{
           background:
             " linear-gradient(180deg, rgba(162, 89, 255, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), #3B3B3B",
         }}
       >
-        <div
+        <motion.div
+          initial="closed"
+          animate="open"
+          variants={{
+            open: {
+              clipPath: "inset(0% 0% 0% 0% round 10px)",
+              transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.7,
+                delayChildren: 0.3,
+                staggerChildren: 0.05,
+              },
+            },
+            closed: {
+              clipPath: "inset(10% 50% 90% 50% round 10px)",
+              transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3,
+              },
+            },
+          }}
           className="flex justify-center items-center text-center sm:block"
           style={{
             background: `linear-gradient(180deg, rgba(123, 97, 255, 0.2) 0%, rgba(255, 255, 255, 0)`,
@@ -87,6 +113,7 @@ const AddCartModal = () => {
                             background:
                               "linear-gradient(149deg, #A259FF 0%, #FF6250 100%)",
                           }}
+                          onClick={closeModal}
                         >
                           Proceed To Checkout
                         </motion.button>
@@ -97,8 +124,8 @@ const AddCartModal = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </Modal>
   );
 };

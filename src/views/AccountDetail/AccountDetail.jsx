@@ -6,6 +6,11 @@ import MoreItems from "./component/MoreItems";
 import Navbar from "../../ui-elements/Navbar";
 import FooterMain from "../../ui-elements/FooterMain";
 import AddCartModal from "../../ui-elements/AddCartModal";
+const transitionValues = {
+  duration: 0.8,
+  yoyo: Infinity,
+  ease: "easeOut",
+};
 const AccountDetail = (props) => {
   const { type, color1, explain } = props;
   const [openAccountModal, setOpenAccountModal] = useState(false);
@@ -126,7 +131,7 @@ const AccountDetail = (props) => {
                 >
                   Add to cart
                 </motion.button>
-                {openAccountModal && <AddCartModal />}
+                {openAccountModal && <AddCartModal open = {openAccountModal}/>}
                 <motion.button
                   whileHover={{ scale: 1.05, color: "#f8e112" }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -149,7 +154,19 @@ const AccountDetail = (props) => {
               <h1 className="#858584 font-mono text-base font-normal leading-[22px] text-[#858584] mb-2.5 xl:text-[22px] xl:font-bold">
                 Description
               </h1>
-              <p className="font-work text-base font-normal leading-[22px] text-white xl:text-[22px]">
+              <motion.span
+                transition={{
+                  y: transitionValues,
+                  width: transitionValues,
+                  height: transitionValues,
+                }}
+                animate={{
+                  y: ["2rem", "8rem", "10rem"],
+                  width: ["5rem", "5rem", "6rem"],
+                  height: ["5rem", "5rem", "4rem"],
+                }}
+                className="font-work text-base font-normal leading-[22px] text-white xl:text-[22px]"
+              >
                 {/* {explain} */}
                 Get your Netflix account for a fraction of the price! <br />
                 Unlimited films, TV programs and more. <br />
@@ -164,7 +181,7 @@ const AccountDetail = (props) => {
                 your favorite programs with the iOS, Android, or Windows 10 app.
                 Use downloads to watch while you're on the go and without an
                 internet connection. Take Netflix with you anywhere.
-              </p>
+              </motion.span>
             </div>
             <div className="space-y-3">
               <h1 className="#858584 font-mono text-base font-normal leading-[22px] text-[#858584] mb-2.5">
