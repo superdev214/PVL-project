@@ -54,7 +54,7 @@ const MoreItems = () => {
         <div className="grid grid-cols-1 gap-y-[30px] md:grid-cols-2 xl:grid-cols-3 md:gap-[30px]">
           {fakeAccountList.map((item, index) => {
             return (
-              <AccountDetilCard
+              <AccountTypeCard
                 key={item.type}
                 type={item.type}
                 life_price={item.life_price}

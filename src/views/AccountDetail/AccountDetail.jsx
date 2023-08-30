@@ -7,10 +7,6 @@ import Navbar from "../../ui-elements/Navbar";
 import FooterMain from "../../ui-elements/FooterMain";
 const AccountDetail = (props) => {
   const { type, color1, explain } = props;
-  const [test, setTest] = useState(false);
-  useEffect(() => {
-    setTest(!test);
-  }, [test]);
   return (
     <div>
       <Navbar />

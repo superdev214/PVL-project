@@ -10,6 +10,7 @@ import {
 import SignUp from "./views/Login/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
 import AccountDetail from "./views/AccountDetail/AccountDetail";
+import Proceed from "./views/Proceed/Proceed";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -29,8 +30,13 @@ function App() {
             path="/accountDetail"
             element={<AccountDetail type={fakeAccountList[0].type} />}
           />
+                   <Route
+            path="/proceed"
+            element={<Proceed />}
+          />
         </Routes>
       </Router>
+
     </div>
   );
 }
