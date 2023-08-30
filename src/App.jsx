@@ -11,6 +11,7 @@ import SignUp from "./views/Login/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
 import AccountDetail from "./views/AccountDetail/AccountDetail";
 import Proceed from "./views/Proceed/Proceed";
+import AddCartModal from "./ui-elements/AddCartModal";
 const fakeAccountList = [
   {
     type: "netflix",

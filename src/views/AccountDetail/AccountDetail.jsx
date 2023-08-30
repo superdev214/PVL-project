@@ -5,12 +5,16 @@ import Icon_World from "./Icon/Icon_World";
 import MoreItems from "./component/MoreItems";
 import Navbar from "../../ui-elements/Navbar";
 import FooterMain from "../../ui-elements/FooterMain";
+import AddCartModal from "../../ui-elements/AddCartModal";
 const AccountDetail = (props) => {
   const { type, color1, explain } = props;
+  const [openAccountModal, setOpenAccountModal] = useState(false);
   return (
     <div>
       <Navbar />
-      <div className="bg-[#2B2B2B] pt-[80px]">
+      <div className="bg-[#2B2B2B] pt-[80px] ">
+        {/* modal */}
+        {/* end modal */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -112,16 +116,17 @@ const AccountDetail = (props) => {
                   className={classNames({
                     "h-[60px] text-base": true,
                     "w-full text-white rounded-[20px] border-2 mx-auto border-[#A259FF] text-center font-work font-semibold leading-[22px] my-auto bg-white": true,
-
                     "md:min-w-[235px]": true,
                   })}
                   style={{
                     background:
                       "linear-gradient(170deg, #A259FF 0%, #377DF7 100%), linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
+                  onClick={() => setOpenAccountModal(true)}
                 >
                   Add to cart
                 </motion.button>
+                {openAccountModal && <AddCartModal />}
                 <motion.button
                   whileHover={{ scale: 1.05, color: "#f8e112" }}
                   transition={{ type: "spring", stiffness: 300 }}
