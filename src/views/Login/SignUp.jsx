@@ -28,7 +28,7 @@ const variants_items = {
   },
 };
 const variants_parents = {};
-const Login = () => {
+const SignUp = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   return (
     <div>
@@ -210,4 +210,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default SignUp;

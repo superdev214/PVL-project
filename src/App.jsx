@@ -7,7 +7,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Login from "./views/Login/Login";
+import SignUp from "./views/Login/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
 import AccountDetail from "./views/AccountDetail/AccountDetail";
 const fakeAccountList = [
@@ -23,7 +23,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/signup" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/marketplace" element={<MarketPlace />} />
           <Route
             path="/accountDetail"

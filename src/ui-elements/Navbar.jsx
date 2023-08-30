@@ -66,21 +66,24 @@ const Navbar = () => {
                     background:
                       "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
-                 
                 >
                   {" "}
-                  <motion.div  whileHover={{
-                    scale: 1.15,
-                    transition: {
-                      duration: 0.1,
-                    },
-                  }}>
-                    <motion.img
-                      src="/assets/User.svg"
-                      className="w-[20px] h-[20px] inline-block mr-[12px]"
-                    />
-                    <motion.span> Sign Up</motion.span>
-                  </motion.div>
+                  <a href="/signup">
+                    <motion.div
+                      whileHover={{
+                        scale: 1.15,
+                        transition: {
+                          duration: 0.1,
+                        },
+                      }}
+                    >
+                      <motion.img
+                        src="/assets/User.svg"
+                        className="w-[20px] h-[20px] inline-block mr-[12px]"
+                      />
+                      <motion.span> Sign Up</motion.span>
+                    </motion.div>
+                  </a>
                 </motion.button>
               </div>
             </div>
@@ -167,7 +170,7 @@ const Navbar = () => {
                 </a>
 
                 <a
-                  href="/"
+                  href="/signup"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Sign up
