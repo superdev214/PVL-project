@@ -26,7 +26,7 @@ const CollectionCard = (props) => {
   const { type, life_price, six_months_price, color1 } = props;
   return (
     <motion.div
-    initial={{ opacity: 0.6 }}
+    initial={{ opacity: 0 }}
     whileHover={{
       scale: 1.05,
       transition: { duration: 1 },

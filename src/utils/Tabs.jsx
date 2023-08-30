@@ -4,6 +4,7 @@ import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 
 const Tabs = ({ children }) => {
+
   const [activeTab, setActiveTab] = useState(children[0].props.label);
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   const handleClick = (e, newActiveTab) => {

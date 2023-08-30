@@ -9,16 +9,28 @@ import {
 } from "react-router-dom";
 import Login from "./views/Login/Login";
 import MarketPlace from "./views/Marketplace/Marketplace";
+import AccountDetail from "./views/AccountDetail/AccountDetail";
+const fakeAccountList = [
+  {
+    type: "netflix",
+    life_price: 1.63,
+    six_months_price: 0.33,
+  },
+];
 function App() {
   return (
     <div className="App">
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/signup" element={<Login />} />
-            <Route path="/marketplace" element={<MarketPlace />} />
-          </Routes>
-        </Router>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signup" element={<Login />} />
+          <Route path="/marketplace" element={<MarketPlace />} />
+          <Route
+            path="/accountDetail"
+            element={<AccountDetail type={fakeAccountList[0].type} />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }
