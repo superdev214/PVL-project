@@ -30,7 +30,11 @@ const AccountTypeCard = (props) => {
       <motion.div
         layoutId="news"
         variants={effect}
-        whileHover={{scale:1.05}}
+        whileHover={{
+          scale: 1.05,
+          transition: { duration: 0.5 },
+        }}
+        whileTap={{ scale: 0.9 }}
         className=" rounded-[20px] bg-[#3B3B3B] overflow-hidden hover:cursor-pointer relative"
       >
         <motion.div
