@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import Modal from "react-modal";
 const AddCartModal = (props) => {
   const customStyles = {
