@@ -67,7 +67,7 @@ const Tabs = ({ children }) => {
 
 const Tab = ({ label, children }) => {
   return (
-    <div label={label} className="hidden ">
+    <div label={label} className="block ">
       {children}
     </div>
   );

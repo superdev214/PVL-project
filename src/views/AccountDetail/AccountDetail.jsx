@@ -6,6 +6,7 @@ import MoreItems from "./component/MoreItems";
 import Navbar from "../../ui-elements/Navbar";
 import FooterMain from "../../ui-elements/FooterMain";
 import AddCartModal from "../../ui-elements/AddCartModal";
+import ReactModal from "react-modal";
 const transitionValues = {
   duration: 0.8,
   yoyo: Infinity,
