@@ -33,9 +33,9 @@ const ProceedAccountTypesTab = () => {
       <div className="container mx-auto px-[30px] py-10 grid grid-cols-1 gap-y-[30px] md:grid-cols-2 md:gap-x-[30px] xl:grid-cols-3">
         {fakeAccountList.map((item, index) => {
           return (
-            <Link to="/accountdetail">
+            <Link to="/accountdetail" key={index}>
               <AccountTypeCard
-                key={item.type}
+                key={index}
                 type={item.type}
                 life_price={item.life_price}
                 six_months_price={item.six_months_price}
