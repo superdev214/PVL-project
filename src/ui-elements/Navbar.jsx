@@ -68,7 +68,7 @@ const Navbar = () => {
                   }}
                 >
                   {" "}
-                  <Link to="/signup">
+                  <Link to="/login">
                     <motion.div
                       whileHover={{
                         scale: 1.15,
@@ -81,7 +81,7 @@ const Navbar = () => {
                         src="/assets/User.svg"
                         className="w-[20px] h-[20px] inline-block mr-[12px]"
                       />
-                      <motion.span> Sign Up</motion.span>
+                      <motion.span> Log in</motion.span>
                     </motion.div>
                   </Link>
                 </motion.button>
@@ -170,10 +170,10 @@ const Navbar = () => {
                 </a>
 
                 <Link
-                  to="/signup"
+                  to="/login"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Sign up
+                  Log in
                 </Link>
               </div>
             </div>

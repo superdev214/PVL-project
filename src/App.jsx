@@ -8,13 +8,16 @@ import {
   Navigate,
   BrowserRouter,
 } from "react-router-dom";
-import SignUp from "./views/Signup/SignUp";
+import SignUp from "./views/Auth/Signup/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
 import AccountDetail from "./views/AccountDetail/AccountDetail";
 import Proceed from "./views/Proceed/Proceed";
 import AddCartModal from "./ui-elements/AddCartModal";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import StandardLayout from "./layouts/StandardLayout";
+import UserLayout from "./layouts/UserLayout";
+import Login from "./views/Auth/Login/Login";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -22,13 +25,6 @@ const fakeAccountList = [
     six_months_price: 0.33,
   },
 ];
-export const GoTop = ({ children }) => {
-  let location = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-  return children;
-};
 function App() {
   return (
     <div className="App">
@@ -38,41 +34,49 @@ function App() {
             exact
             path="/"
             element={
-              <GoTop>
+              <StandardLayout>
                 <Home />
-              </GoTop>
+              </StandardLayout>
             }
           />
           <Route
             path="/signup"
             element={
-              <GoTop>
+              <StandardLayout>
                 <SignUp />
-              </GoTop>
+              </StandardLayout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <StandardLayout>
+                <Login />
+              </StandardLayout>
             }
           />
           <Route
             path="/marketplace"
             element={
-              <GoTop>
+              <UserLayout>
                 <MarketPlace />
-              </GoTop>
+              </UserLayout>
             }
           />
           <Route
             path="/accountDetail"
             element={
-              <GoTop>
+              <UserLayout>
                 <AccountDetail type={fakeAccountList[0].type} />
-              </GoTop>
+              </UserLayout>
             }
           />
           <Route
             path="/proceed"
             element={
-              <GoTop>
+              <UserLayout>
                 <Proceed />
-              </GoTop>
+              </UserLayout>
             }
           />
         </Routes>

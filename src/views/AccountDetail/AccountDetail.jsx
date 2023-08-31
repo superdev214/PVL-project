@@ -3,8 +3,6 @@ import classNames from "classnames";
 import { motion } from "framer-motion";
 import Icon_World from "./Icon/Icon_World";
 import MoreItems from "./component/MoreItems";
-import Navbar from "../../ui-elements/Navbar";
-import FooterMain from "../../ui-elements/FooterMain";
 import AddCartModal from "../../ui-elements/AddCartModal";
 import ReactModal from "react-modal";
 const transitionValues = {
@@ -17,7 +15,6 @@ const AccountDetail = (props) => {
   const [openAccountModal, setOpenAccountModal] = useState(false);
   return (
     <div>
-      <Navbar />
       <div className="bg-[#2B2B2B] pt-[80px] ">
         {/* modal */}
         {/* end modal */}
@@ -205,7 +202,6 @@ const AccountDetail = (props) => {
           <MoreItems />
         </motion.div>
       </div>
-      <FooterMain />
     </div>
   );
 };
