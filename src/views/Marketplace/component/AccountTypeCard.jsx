@@ -1,5 +1,4 @@
-import React, { useMemo, useEffect } from "react";
-import getScrollAnimation from "../../../utils/getScrollAnimation";
+import React, { useEffect } from "react";
 import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 const effect = {
@@ -24,18 +23,17 @@ const itemB = {
 
 const AccountTypeCard = (props) => {
   const { type, life_price, six_months_price, color1 } = props;
-  const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <ScrollAnimationWrapper>
+    // <ScrollAnimationWrapper>
       <motion.div
         layoutId="news"
-        variants={effect}
+        // variants={effect}
         whileHover={{
           scale: 1.05,
           transition: { duration: 0.5 },
         }}
         whileTap={{ scale: 0.9 }}
-        className=" rounded-[20px] bg-[#3B3B3B] overflow-hidden hover:cursor-pointer relative"
+        className=" rounded-[20px] bg-[#3B3B3B] overflow-hidden hover:cursor-pointer relative mb-[50px]"
       >
         <motion.div
           variants={itemA}
@@ -89,7 +87,7 @@ const AccountTypeCard = (props) => {
           </div>
         </motion.div>
       </motion.div>
-    </ScrollAnimationWrapper>
+    // </ScrollAnimationWrapper>
   );
 };
 
