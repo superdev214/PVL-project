@@ -7,7 +7,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import SignUp from "./views/Login/SignUp";
+import SignUp from "./views/Signup/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
 import AccountDetail from "./views/AccountDetail/AccountDetail";
 import Proceed from "./views/Proceed/Proceed";
