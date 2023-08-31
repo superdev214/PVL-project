@@ -33,8 +33,8 @@ const Navbar = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a
-                  href="/marketplace"
+                <Link
+                  to="/marketplace"
                   // className={
                   //   "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-[17px] text-white" +
                   //   (activeNavItem === ""
@@ -44,7 +44,7 @@ const Navbar = () => {
                   className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
                 >
                   MarketPlace
-                </a>
+                </Link>
                 <a
                   href="/"
                   className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
@@ -68,7 +68,7 @@ const Navbar = () => {
                   }}
                 >
                   {" "}
-                  <a href="/signup">
+                  <Link to="/signup">
                     <motion.div
                       whileHover={{
                         scale: 1.15,
@@ -83,7 +83,7 @@ const Navbar = () => {
                       />
                       <motion.span> Sign Up</motion.span>
                     </motion.div>
-                  </a>
+                  </Link>
                 </motion.button>
               </div>
             </div>
@@ -148,12 +148,12 @@ const Navbar = () => {
           {(ref) => (
             <div className="md:hidden container mx-auto" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a
-                  href="/marketplace"
+                <Link
+                  to="/marketplace"
                   className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Marketplace
-                </a>
+                </Link>
 
                 <a
                   href="/"
@@ -169,12 +169,12 @@ const Navbar = () => {
                   Cart
                 </a>
 
-                <a
-                  href="/signup"
+                <Link
+                  to="/signup"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Sign up
-                </a>
+                </Link>
               </div>
             </div>
           )}

@@ -57,7 +57,7 @@ const AccountTypesTab = () => {
       <div className="container mx-auto px-[30px] py-10 grid grid-cols-1 gap-y-[30px] md:grid-cols-2 md:gap-x-[30px] xl:grid-cols-3">
         {fakeAccountList.map((item, index) => {
           return (
-            <a href = "/accountdetail" key={index} onClick={() => {setDraw(!draw)}}>
+            <Link to = "/accountdetail" key={index} onClick={() => {setDraw(!draw)}}>
               <AccountTypeCard
                 key={index}
                 type={item.type}
@@ -65,7 +65,7 @@ const AccountTypesTab = () => {
                 six_months_price={item.six_months_price}
                 color1={item.color1}
               />
-            </a>
+            </Link>
           );
         })}
       </div>

@@ -6,12 +6,15 @@ import {
   Route,
   Routes,
   Navigate,
+  BrowserRouter,
 } from "react-router-dom";
 import SignUp from "./views/Signup/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
 import AccountDetail from "./views/AccountDetail/AccountDetail";
 import Proceed from "./views/Proceed/Proceed";
 import AddCartModal from "./ui-elements/AddCartModal";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -19,25 +22,61 @@ const fakeAccountList = [
     six_months_price: 0.33,
   },
 ];
+export const GoTop = ({ children }) => {
+  let location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return children;
+};
 function App() {
   return (
     <div className="App">
-      <Router>
+      <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/marketplace" element={<MarketPlace />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <GoTop>
+                <Home />
+              </GoTop>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <GoTop>
+                <SignUp />
+              </GoTop>
+            }
+          />
+          <Route
+            path="/marketplace"
+            element={
+              <GoTop>
+                <MarketPlace />
+              </GoTop>
+            }
+          />
           <Route
             path="/accountDetail"
-            element={<AccountDetail type={fakeAccountList[0].type} />}
+            element={
+              <GoTop>
+                <AccountDetail type={fakeAccountList[0].type} />
+              </GoTop>
+            }
           />
-                   <Route
+          <Route
             path="/proceed"
-            element={<Proceed />}
+            element={
+              <GoTop>
+                <Proceed />
+              </GoTop>
+            }
           />
         </Routes>
-      </Router>
-
+      </BrowserRouter>
     </div>
   );
 }

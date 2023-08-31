@@ -101,7 +101,7 @@ const AddCartModal = (props) => {
                       Cart Total: $ 10.00
                     </p>
                     <div className="w-full mt-6">
-                      <a href="/proceed">
+                      <Link to="/proceed">
                         <motion.button
                           whileHover={{ scale: 1.05, color: "#f8e112" }}
                           transition={{ type: "spring", stiffness: 300 }}
@@ -117,7 +117,7 @@ const AddCartModal = (props) => {
                         >
                           Proceed To Checkout
                         </motion.button>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

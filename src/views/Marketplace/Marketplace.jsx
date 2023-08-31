@@ -9,9 +9,9 @@ const MarketPlace = () => {
     <>
       <Navbar />
       <SearchAccount />
-        <Tab label="Account Types" count="249">
-          <AccountTypesTab />
-        </Tab>
+      <Tab label="Account Types" count="249">
+        <AccountTypesTab />
+      </Tab>
 
       <FooterMain />
     </>
