@@ -28,7 +28,6 @@ const AccountTypeCard = (props) => {
   return (
     <ScrollAnimationWrapper>
       <motion.div
-        layoutId="news"
         variants={effect}
         whileHover={{
           scale: 1.05,
