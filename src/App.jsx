@@ -17,6 +17,8 @@ import { useEffect } from "react";
 import StandardLayout from "./layouts/StandardLayout";
 import UserLayout from "./layouts/UserLayout";
 import Login from "./views/Auth/Login/Login";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const fakeAccountList = [
   {
     type: "netflix",
@@ -26,57 +28,60 @@ const fakeAccountList = [
 ];
 function App() {
   return (
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <StandardLayout>
-                <Home />
-              </StandardLayout>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <StandardLayout>
-                <SignUp />
-              </StandardLayout>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <StandardLayout>
-                <Login />
-              </StandardLayout>
-            }
-          />
-          <Route
-            path="/marketplace"
-            element={
-              <UserLayout>
-                <MarketPlace />
-              </UserLayout>
-            }
-          />
-          <Route
-            path="/accountDetail"
-            element={
-              <UserLayout>
-                <AccountDetail type={fakeAccountList[0].type} />
-              </UserLayout>
-            }
-          />
-          <Route
-            path="/proceed"
-            element={
-              <UserLayout>
-                <Proceed />
-              </UserLayout>
-            }
-          />
-        </Routes>
+    <>
+      <ToastContainer />
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <StandardLayout>
+              <Home />
+            </StandardLayout>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <StandardLayout>
+              <SignUp />
+            </StandardLayout>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <StandardLayout>
+              <Login />
+            </StandardLayout>
+          }
+        />
+        <Route
+          path="/marketplace"
+          element={
+            <UserLayout>
+              <MarketPlace />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/accountDetail"
+          element={
+            <UserLayout>
+              <AccountDetail type={fakeAccountList[0].type} />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/proceed"
+          element={
+            <UserLayout>
+              <Proceed />
+            </UserLayout>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

@@ -4,29 +4,14 @@ import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 import classNames from "classnames";
 import getUserAnimation from "../../../utils/getUserAnimation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../../redux/reducer/userSlice";
-import { setUser } from "../../../redux/reducer/userSlice";
-const variants = {
-  onscreen: { opacity: 1, x: "0" },
-  offscreen: { opacity: 0, x: "-100%" },
-};
-const variants_items = {
-  onscreen: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  offscreen: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
-  },
-};
+import { toast } from "react-toastify";
+import { object, z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerSchema } from "../validationSchema";
+import { variants_items, variants } from "../effectValue";
 const initialUser = {
   name: "",
   email: "",
@@ -36,22 +21,21 @@ const SignUp = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
-  
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    setUserinfo({ ...user, [name]: value });
+  const { errorMsg, loading } = useSelector((state) => state.userState);
+  useEffect(() => {
+    if (errorMsg && loading === false) toast.error(errorMsg);
+  }, [loading]);
+
+  const onSubmitHandler = (data) => {
+    dispatch(registerUser(data));
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(setUser(user))
-      // .then((data) => {
-      //   console.log(data);
-      //   // dispatch(setUser(data));
-      // })
-      // .catch((e) => {
-      //   console.log(e);
-      // });
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
   return (
     <div>
       <ScrollAnimationWrapper>
@@ -88,7 +72,7 @@ const SignUp = () => {
               </motion.div>
               <form
                 className="pb-10 md:max-w-[330px] xl:min-w-[330px] space-y-[15px]"
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmitHandler)}
               >
                 <motion.div
                   variants={variants_items}
@@ -118,11 +102,16 @@ const SignUp = () => {
                     type="text"
                     id="name"
                     name="name"
-                    onChange={handleInputChange}
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black "
                     placeholder="Username"
+                    {...register("name")}
                   />
                 </motion.div>
+                {errors.name && (
+                  <p className="text-xs italic text-red-500 block">
+                    {errors.name.message}
+                  </p>
+                )}
                 <motion.div
                   variants={variants_items}
                   className="flex items-center text-lg "
@@ -151,11 +140,16 @@ const SignUp = () => {
                     type="text"
                     id="email"
                     name="email"
-                    onChange={handleInputChange}
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black "
                     placeholder="Email Address"
+                    {...register("email")}
                   />
                 </motion.div>
+                {errors.email && (
+                  <p className="text-xs italic text-red-500 block">
+                    {errors.email.message}
+                  </p>
+                )}
                 <motion.div
                   variants={variants_items}
                   className="flex items-center text-lg "
@@ -190,11 +184,16 @@ const SignUp = () => {
                     type="password"
                     id="password"
                     name="password"
-                    onChange={handleInputChange}
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black"
                     placeholder="Password"
+                    {...register("password")}
                   />
                 </motion.div>
+                {errors.password && (
+                  <p className="text-xs italic text-red-500">
+                    {errors.password.message}
+                  </p>
+                )}
                 <motion.div
                   variants={variants_items}
                   className="flex items-center text-lg mb-6 md:mb-8"
@@ -228,13 +227,21 @@ const SignUp = () => {
                   <input
                     type="password"
                     id="checkPassword"
+                    name="checkPassword"
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black"
                     placeholder="Confirm Password"
+                    {...register("checkPassword")}
                   />
                 </motion.div>
-                <motion.button
-                  variants={variants}
-                  onClick={handleSubmit}
+                {errors.checkPassword && (
+                  <p className="text-xs italic text-red-500 block">
+                    {errors.checkPassword.message}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  // onClick={onSubmitHandler}
+                  disabled={isSubmitting}
                   className={classNames({
                     "h-[60px] text-[22px] !mt-[30px]": true,
                     "w-full text-white rounded-[20px] border-2 border-[#A259FF] px-[50px] font-work font-semibold leading-[22px]": true,
@@ -247,7 +254,7 @@ const SignUp = () => {
                   }}
                 >
                   Create account
-                </motion.button>
+                </button>
               </form>
             </div>
           </div>
