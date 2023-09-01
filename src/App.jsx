@@ -6,7 +6,6 @@ import {
   Route,
   Routes,
   Navigate,
-  BrowserRouter,
 } from "react-router-dom";
 import SignUp from "./views/Auth/Signup/SignUp";
 import MarketPlace from "./views/Marketplace/Marketplace";
@@ -27,8 +26,6 @@ const fakeAccountList = [
 ];
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
         <Routes>
           <Route
             exact
@@ -80,8 +77,6 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
-    </div>
   );
 }
 

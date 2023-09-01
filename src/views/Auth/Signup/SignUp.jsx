@@ -1,10 +1,12 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import getScrollAnimation from "../../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 import classNames from "classnames";
-import getUserAnimation from "../../../utils/getUserAnimation"
-
+import getUserAnimation from "../../../utils/getUserAnimation";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../../redux/reducer/userSlice";
+import { setUser } from "../../../redux/reducer/userSlice";
 const variants = {
   onscreen: { opacity: 1, x: "0" },
   offscreen: { opacity: 0, x: "-100%" },
@@ -25,9 +27,31 @@ const variants_items = {
     },
   },
 };
-const variants_parents = {};
+const initialUser = {
+  name: "",
+  email: "",
+  password: "",
+};
 const SignUp = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
+  const [user, setUserinfo] = useState(initialUser);
+  const dispatch = useDispatch();
+  
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUserinfo({ ...user, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setUser(user))
+      // .then((data) => {
+      //   console.log(data);
+      //   // dispatch(setUser(data));
+      // })
+      // .catch((e) => {
+      //   console.log(e);
+      // });
+  };
   return (
     <div>
       <ScrollAnimationWrapper>
@@ -62,7 +86,10 @@ const SignUp = () => {
                   for a fraction of the price.
                 </p>
               </motion.div>
-              <form className="pb-10 md:max-w-[330px] xl:min-w-[330px] space-y-[15px]">
+              <form
+                className="pb-10 md:max-w-[330px] xl:min-w-[330px] space-y-[15px]"
+                onSubmit={handleSubmit}
+              >
                 <motion.div
                   variants={variants_items}
                   className="flex items-center text-lg"
@@ -89,7 +116,9 @@ const SignUp = () => {
                   </svg>
                   <input
                     type="text"
-                    id="inputUsername"
+                    id="name"
+                    name="name"
+                    onChange={handleInputChange}
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black "
                     placeholder="Username"
                   />
@@ -120,7 +149,9 @@ const SignUp = () => {
                   </svg>
                   <input
                     type="text"
-                    id="inputEmails"
+                    id="email"
+                    name="email"
+                    onChange={handleInputChange}
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black "
                     placeholder="Email Address"
                   />
@@ -158,6 +189,8 @@ const SignUp = () => {
                   <input
                     type="password"
                     id="password"
+                    name="password"
+                    onChange={handleInputChange}
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black"
                     placeholder="Password"
                   />
@@ -201,6 +234,7 @@ const SignUp = () => {
                 </motion.div>
                 <motion.button
                   variants={variants}
+                  onClick={handleSubmit}
                   className={classNames({
                     "h-[60px] text-[22px] !mt-[30px]": true,
                     "w-full text-white rounded-[20px] border-2 border-[#A259FF] px-[50px] font-work font-semibold leading-[22px]": true,

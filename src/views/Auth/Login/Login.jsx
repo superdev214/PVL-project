@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 import classNames from "classnames";
 import getUserAnimation from "../../../utils/getUserAnimation";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+// validation
 
 const variants = {
   onscreen: { opacity: 1, x: "0" },
@@ -29,6 +33,13 @@ const variants_items = {
 const variants_parents = {};
 const Login = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
+  const formSchema = z.object({
+    name: z.string().min(1, "Username or Email is required").max(100),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(8, "Password must have more than 8 characters"),
+  });
   return (
     <div>
       <ScrollAnimationWrapper>
@@ -90,7 +101,7 @@ const Login = () => {
                   </svg>
                   <input
                     type="text"
-                    id="inputUsername"
+                    id="name"
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black "
                     placeholder="Username or Email"
                   />
@@ -133,6 +144,7 @@ const Login = () => {
                   />
                 </motion.div>
                 <motion.button
+                  type="submit"
                   variants={variants}
                   className={classNames({
                     "h-[60px] text-[22px] !mt-[30px]": true,

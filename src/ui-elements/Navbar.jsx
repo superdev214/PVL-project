@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import ButtonOutline from "./buttons/ButtonOutline";
 import { motion } from "framer-motion";
 import classNames from "classnames";
+
 const Navbar = () => {
+
   const [scrollActive, setScrollActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isCategorySub, setIsCategorySub] = useState(false);
