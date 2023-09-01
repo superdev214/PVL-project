@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import classNames from "classnames";
 import getUserAnimation from "../../../utils/getUserAnimation";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../../redux/reducer/userSlice";
+import { loginUser, registerUser } from "../../../redux/reducer/userSlice";
 import { toast } from "react-toastify";
 import { object, z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -25,10 +25,14 @@ const Login = () => {
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
   const { errorMsg, loading } = useSelector((state) => state.userState);
-
+  useEffect(() => {
+    if (errorMsg && loading === false) toast.error(errorMsg);
+    else if(!errorMsg && loading === false) toast.success("Login Success");
+  }, [loading]);
 
   const onSubmitHandler = (data) => {
-    // dispatch(registerUser(data));
+    console.log(data);
+    dispatch(loginUser(data));
   };
   const {
     register,
@@ -69,7 +73,10 @@ const Login = () => {
                 <p className="font-work text-base font-normal leading-[22px] text-white xl:text-[22px] xl:leading-[35px] capitalize">
                   Log in to your account to start buying online accounts for a
                   fraction of the price!
-                  <br/><span className="italic font-bold">Note : You have to login to go to marketplace.</span>
+                  <br />
+                  <span className="italic font-bold">
+                    Note : You have to login to go to marketplace.
+                  </span>
                 </p>
               </motion.div>
               <form
@@ -83,16 +90,16 @@ const Login = () => {
                   <IconHuman />
                   <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="email"
+                    name="email"
                     className="bg-white pl-12 py-2 md:py-4 focus:outline-none w-full rounded-[20px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-black "
                     placeholder="Username"
-                    {...register("name")}
+                    {...register("email")}
                   />
                 </motion.div>
-                {errors.name && (
+                {errors.email && (
                   <p className="text-xs italic text-red-500 block">
-                    {errors.name.message}
+                    {errors.email.message}
                   </p>
                 )}
                 <motion.div
@@ -112,11 +119,6 @@ const Login = () => {
                 {errors.password && (
                   <p className="text-xs italic text-red-500">
                     {errors.password.message}
-                  </p>
-                )}
-                {errors.checkPassword && (
-                  <p className="text-xs italic text-red-500 block">
-                    {errors.checkPassword.message}
                   </p>
                 )}
                 <motion.div

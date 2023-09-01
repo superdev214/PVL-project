@@ -15,12 +15,23 @@ export const registerUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await UserService.registerUser(data);
-      console.log(res);
       return res.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
+);
+export const loginUser = createAsyncThunk(
+    "user/login",
+    async (data, { rejectWithValue }) => {
+        try {
+            const res = await UserService.loginUser(data);
+            console.log(res);
+            return res.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
 );
 export const userSlice = createSlice({
   initialState,
@@ -34,6 +45,7 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: {
+    // register
     [registerUser.pending]: (state) => {
       state.loading = true;
       state.sucessSingup = false;
@@ -51,6 +63,22 @@ export const userSlice = createSlice({
       state.sucessSingup = false;
       state.errorMsg = action.payload;
       console.log(action.payload);
+    },
+    // login
+    [loginUser.pending]: (state) => {
+      state.loading = true;  
+    },
+    [loginUser.rejected]: (state,action) => {
+        console.log("login rejected");
+        console.log(action.payload);
+        state.loading = false;  
+        state.errorMsg = action.payload;
+    },
+    [loginUser.fulfilled]: (state,action) => {
+        localStorage.setItem("token", action.payload.token);
+        state.loading = false;
+        state.errorMsg = null;
+        setUser(state,action);
     },
   },
 });

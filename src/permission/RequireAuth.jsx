@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 const RequireAuth = ({children, redirectTo}) => {
     let {loggedin} = useSelector((state) => state.userState);
-    if(!loggedin) {
+    const token = localStorage.getItem("token")
+    ? localStorage.getItem("token")
+    : "";
+    if(!token) {
         return <Navigate to="/login" />
     }
     return children;

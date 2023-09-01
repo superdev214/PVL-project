@@ -30,10 +30,11 @@ const SignUp = () => {
   );
   useEffect(() => {
     if (errorMsg && loading === false) toast.error(errorMsg);
-    else if (sucessSingup && loading === false)
-      toast.success("Sign up success");
   }, [loading]);
-
+  useEffect(() => {
+    if (sucessSingup) toast.success("Sign up success");
+  }, [sucessSingup]);
+  
   const onSubmitHandler = (data) => {
     dispatch(registerUser(data));
   };
@@ -172,7 +173,9 @@ const SignUp = () => {
                       "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
                 >
-                  <button type="submit" className="mx-auto">Create account</button>
+                  <button type="submit" className="mx-auto">
+                    Create account
+                  </button>
                 </motion.div>
               </form>
             </div>

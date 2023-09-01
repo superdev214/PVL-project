@@ -16,7 +16,7 @@ export const registerSchema = object({
   message: "Passwords do not match",
 });
 export const loginSchema = object({
-  name: z.string().min(3, "Username or Email required").max(100),
+  email: z.string().min(3, "Username or Email required").max(100),
   password: z
     .string()
     .min(1, "Password is required")
