@@ -17,7 +17,6 @@ import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
 import { Link } from "react-router-dom";
 const initialUser = {
-  name: "",
   email: "",
   password: "",
 };
@@ -26,9 +25,7 @@ const Login = () => {
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
   const { errorMsg, loading } = useSelector((state) => state.userState);
-  useEffect(() => {
-    if (errorMsg && loading === false) toast.error(errorMsg);
-  }, [loading]);
+
 
   const onSubmitHandler = (data) => {
     // dispatch(registerUser(data));
@@ -67,11 +64,12 @@ const Login = () => {
                 className="my-[30px] md:max-w-[330px] xl:max-w-[460px]"
               >
                 <h1 className="mb-5 text-white font-work text-[38px] font-normal leading-[46px] xl:text-[51px] xl:leading-[56px]">
-                  Create Account
+                  Login To Your Account
                 </h1>
                 <p className="font-work text-base font-normal leading-[22px] text-white xl:text-[22px] xl:leading-[35px] capitalize">
-                  Welcome! enter your details and start buying online accounts
-                  for a fraction of the price.
+                  Log in to your account to start buying online accounts for a
+                  fraction of the price!
+                  <br/><span className="italic font-bold">Note : You have to login to go to marketplace.</span>
                 </p>
               </motion.div>
               <form

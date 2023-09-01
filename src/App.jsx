@@ -70,17 +70,21 @@ function App() {
         <Route
           path="/accountDetail"
           element={
-            <UserLayout>
-              <AccountDetail type={fakeAccountList[0].type} />
-            </UserLayout>
+            <RequireAuth>
+              <UserLayout>
+                <AccountDetail type={fakeAccountList[0].type} />
+              </UserLayout>
+            </RequireAuth>
           }
         />
         <Route
           path="/proceed"
           element={
-            <UserLayout>
-              <Proceed />
-            </UserLayout>
+            <RequireAuth>
+              <UserLayout>
+                <Proceed />
+              </UserLayout>   
+            </RequireAuth>
           }
         />
       </Routes>
