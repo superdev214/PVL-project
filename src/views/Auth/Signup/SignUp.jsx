@@ -25,9 +25,13 @@ const SignUp = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
-  const { errorMsg, loading } = useSelector((state) => state.userState);
+  const { errorMsg, loading, sucessSingup } = useSelector(
+    (state) => state.userState
+  );
   useEffect(() => {
     if (errorMsg && loading === false) toast.error(errorMsg);
+    else if (sucessSingup && loading === false)
+      toast.success("Sign up success");
   }, [loading]);
 
   const onSubmitHandler = (data) => {
@@ -154,12 +158,13 @@ const SignUp = () => {
                     {errors.checkPassword.message}
                   </p>
                 )}
-                <button
-                  type="submit"
+
+                <motion.div
+                  variants={variants_items}
                   className={classNames({
                     "h-[60px] text-[22px] !mt-[30px]": true,
                     "w-full text-white rounded-[20px] border-2 border-[#A259FF] px-[50px] font-work font-semibold leading-[22px]": true,
-                    "pvl-btn": true,
+                    "pvl-btn flex": true,
                     "w-full": true,
                   })}
                   style={{
@@ -167,8 +172,8 @@ const SignUp = () => {
                       "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
                 >
-                  Create account
-                </button>
+                  <button type="submit" className="mx-auto">Create account</button>
+                </motion.div>
               </form>
             </div>
           </div>

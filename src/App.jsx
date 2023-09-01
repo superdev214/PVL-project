@@ -18,7 +18,8 @@ import StandardLayout from "./layouts/StandardLayout";
 import UserLayout from "./layouts/UserLayout";
 import Login from "./views/Auth/Login/Login";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import RequireAuth from "./permission/RequireAuth";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -59,9 +60,11 @@ function App() {
         <Route
           path="/marketplace"
           element={
-            <UserLayout>
-              <MarketPlace />
-            </UserLayout>
+            <RequireAuth>
+              <UserLayout>
+                <MarketPlace />
+              </UserLayout>
+            </RequireAuth>
           }
         />
         <Route

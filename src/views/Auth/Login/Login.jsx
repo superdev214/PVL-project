@@ -15,7 +15,7 @@ import { variants_items, variants } from "../effectValue";
 import IconHuman from "../Icon/IconHuman";
 import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
-
+import { Link } from "react-router-dom";
 const initialUser = {
   name: "",
   email: "",
@@ -121,12 +121,12 @@ const Login = () => {
                     {errors.checkPassword.message}
                   </p>
                 )}
-                <button
-                  type="submit"
+                <motion.div
+                  variants={variants_items}
                   className={classNames({
                     "h-[60px] text-[22px] !mt-[30px]": true,
                     "w-full text-white rounded-[20px] border-2 border-[#A259FF] px-[50px] font-work font-semibold leading-[22px]": true,
-                    "pvl-btn": true,
+                    "pvl-btn flex": true,
                     "w-full": true,
                   })}
                   style={{
@@ -134,9 +134,20 @@ const Login = () => {
                       "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
                 >
-                  Log in
-                </button>
+                  <button type="submit" className="mx-auto">
+                    Log in
+                  </button>
+                </motion.div>
               </form>
+              <motion.span
+                variants={variants}
+                className="text-white font-work text-[14px] leading-[20px] font-normal mt-4 md:mt-[28px] md:text-sm xl:!mt-[39px] px-2"
+              >
+                Don't have an account?{" "}
+                <Link to="/signup">
+                  <span className="text-[#A259FF]">Sign up here!</span>
+                </Link>
+              </motion.span>
             </div>
           </div>
         </motion.div>
