@@ -1,6 +1,6 @@
 import { object, z } from "zod";
 export const registerSchema = object({
-  name: z.string().min(1, "Full name is required").max(100),
+  name: z.string().min(3, "Full name is required").max(100),
   email: z
     .string()
     .min(1, "Email address is required")
@@ -14,4 +14,12 @@ export const registerSchema = object({
 }).refine((data) => data.password === data.checkPassword, {
   path: ["checkPassword"],
   message: "Passwords do not match",
+});
+export const loginSchema = object({
+  name: z.string().min(3, "Username or Email required").max(100),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(8, "Password must be more than 8 characters")
+    .max(32, "Password must be less than 32 characters"),
 });
