@@ -7,12 +7,14 @@ import { addAcountTypeSchema } from "../validationSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAccountType } from "../../../redux/reducer/accountTypeSlice";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 const AddAccountType = () => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const dispatch = useDispatch();
+  let location = useLocation();
   const { errorMsg } = useSelector((state) => state.accountTypeList);
   const handleChange = (file) => {
     setFile(file);
@@ -31,13 +33,19 @@ const AddAccountType = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(addAcountTypeSchema),
   });
   useEffect(() => {
     if (errorMsg && errorMsg !== "success") toast.error(errorMsg);
-    else if (errorMsg === "success") toast.success("Success Register Action");
+    else if (errorMsg === "success") {
+      reset();
+      setPreview(null);
+      window.scrollTo(0, 0);
+      toast.success("Success Register Action");
+    }
   }, [errorMsg]);
   return (
     <div className="bg-[#2B2B2B] pt-[80px] pb-10 w-full overflow-hidden">
