@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import ButtonOutline from "./buttons/ButtonOutline";
 import { motion } from "framer-motion";
 import classNames from "classnames";
-
+import { useSelector } from "react-redux";
 const Navbar = () => {
-
   const [scrollActive, setScrollActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isCategorySub, setIsCategorySub] = useState(false);
+  const { adminPermission } = useSelector((state) => state.userState);
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollActive(window.scrollY > 20);
@@ -35,6 +36,15 @@ const Navbar = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
+                {adminPermission && (
+                  <Link
+                    to="/admin-user"
+                    className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
+                  >
+                    Add Account
+                  </Link>
+                )}
+
                 <Link
                   to="/marketplace"
                   // className={

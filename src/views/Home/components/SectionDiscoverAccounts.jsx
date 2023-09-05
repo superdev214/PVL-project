@@ -3,7 +3,7 @@ import getScrollAnimation from "../../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 import ButtonOutline from "../../../ui-elements/buttons/ButtonOutline";
-
+import { Link } from "react-router-dom";
 const SectionDiscoverAccount = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
@@ -27,13 +27,13 @@ const SectionDiscoverAccount = () => {
                 className="w-full"
               />
             </div>
-            <div className="flex">
+            <Link to='/marketplace' className="flex">
               <ButtonOutline
                 type="secondary"
                 content="Get Started"
                 userClass="w-full"
               />
-            </div>
+            </Link>
             <div className="grid grid-cols-2">
               <div className="mark-sale mx-2">
                 <h1 className="font-mono font-bold leading-[39px] text-[28px] text-white">

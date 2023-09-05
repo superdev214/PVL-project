@@ -12,6 +12,8 @@ const initialState = {
   loggedin: false,
   successlogin: false,
   loginError:null,
+
+  adminPermission : false,
 };
 export const registerUser = createAsyncThunk(
   "user/register",
@@ -72,14 +74,18 @@ export const userSlice = createSlice({
       state.loginError = null;
       state.loading = true;  
       state.successlogin = false;
+      state.adminPermission = false;
     },
     [loginUser.rejected]: (state,action) => {
         console.log("login rejected");
         console.log(action.payload);
         state.loading = false;  
         state.loginError = action.payload;
+        state.adminPermission = false;
     },
     [loginUser.fulfilled]: (state,action) => {
+      if(action.payload === 'Admin success')
+          state.adminPermission = true;
         localStorage.setItem("token", action.payload.token);
         state.loading = false;
         state.loginError = null;

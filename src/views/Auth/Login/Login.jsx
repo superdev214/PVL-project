@@ -25,6 +25,7 @@ const Login = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
+ 
   const { loginError, loading, successlogin } = useSelector(
     (state) => state.userState
   );
@@ -34,7 +35,7 @@ const Login = () => {
   useEffect(() => {
     if (successlogin) {
       toast.success("Congratulations");
-      window.location.href = '/';
+      // window.location.href = '/';
     }
   }, [successlogin]);
   const onSubmitHandler = (data) => {

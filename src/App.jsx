@@ -20,6 +20,9 @@ import Login from "./views/Auth/Login/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequireAuth from "./permission/RequireAuth";
+import RequireAdmin from "./permission/RequireAdmin";
+import Admin from "./views/Admin/Admin";
+import AddAccountType from "./views/Admin/_admin/AddAccountType";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -39,6 +42,28 @@ function App() {
             <StandardLayout>
               <Home />
             </StandardLayout>
+          }
+        />
+        <Route
+          exact
+          path="/admin-user"
+          element={
+            <RequireAdmin>
+              <UserLayout>
+                <Admin />
+              </UserLayout>
+            </RequireAdmin>
+          }
+        />
+        <Route
+          exact
+          path="/add-account-type"
+          element={
+            <RequireAdmin>
+              <UserLayout>
+                <AddAccountType />
+              </UserLayout>
+            </RequireAdmin>
           }
         />
         <Route
@@ -83,7 +108,7 @@ function App() {
             <RequireAuth>
               <UserLayout>
                 <Proceed />
-              </UserLayout>   
+              </UserLayout>
             </RequireAuth>
           }
         />

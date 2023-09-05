@@ -10,6 +10,8 @@ const fakeAccount = [
   { type: "discord nitro", price: 5 },
   { type: "crunchyroll", price: 5 },
   { type: "nordvpn", price: 5 },
+  { type: "netflix", price: 6 },
+  { type: "spotify", price: 5 },
 ];
 
 const SectionTopSelling = () => {
