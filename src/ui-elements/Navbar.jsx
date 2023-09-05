@@ -28,10 +28,10 @@ const Navbar = () => {
       <nav>
         <div className="container mx-auto px-8 py-2">
           <div className="flex items-center justify-between ">
-            <div className="flex items-center space-x-9">
+            <div className=" flex items-center space-x-9">
               <img className="h-10 w-10" src="/assets/pvl.png" alt="Workflow" />
-              <h1 className="md:text-xl font-mono lg:text-2xl font-semibold text-white leading-[140%]">
-                PVL Account Shop
+              <h1 className="flex gap-x-2 md:text-xl font-mono lg:text-2xl font-semibold text-white leading-[140%]">
+                PVL <span className="hidden xl:flex"> Account </span> Shop
               </h1>
             </div>
             <div className="hidden md:block">
