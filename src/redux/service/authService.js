@@ -1,6 +1,4 @@
-import axios from "axios";
-
-const http = axios.create({ baseURL: "http://localhost:8080" });
+import { http } from "../http-common/baseServer";
 
 const getToken = () => {
   const token = localStorage.getItem("token")

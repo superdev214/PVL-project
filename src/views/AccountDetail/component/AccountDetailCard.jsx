@@ -46,7 +46,7 @@ const AccountDetilCard = (props) => {
           <img
             src={`/assets/account/${type}.png`}
             alt="no Img"
-            className="w-full max-h-[438px] xl:max-h-[293px] md:max-h-[256px] 2xl:max-h-[356px]"
+            className="w-full max-h-[438px] xl:max-h-[293px] md:max-h-[256px] 2xl:max-h-[356px] object-cover"
           />
         </motion.div>
         <motion.div

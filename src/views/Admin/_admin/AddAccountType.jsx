@@ -1,37 +1,75 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
-
+import { object, z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addAcountTypeSchema } from "../validationSchema";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAccountType } from "../../../redux/reducer/accountTypeSlice";
+import { toast } from "react-toastify";
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 const AddAccountType = () => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
+  const dispatch = useDispatch();
+  const { errorMsg } = useSelector((state) => state.accountTypeList);
   const handleChange = (file) => {
     setFile(file);
     setPreview(URL.createObjectURL(file));
   };
-  const onSubmit = (e) => {
-    console.log("asdf");
-    e.preventDefault();
+  const onSubmitHandler = (data) => {
+    // data.file = file;
+    console.log(typeof data);
+    const formData = new FormData();
+    formData.append("typename", data.typename);
+    formData.append("description", data.description);
+    formData.append("avatar", file);
+    console.log(formData);
+    dispatch(registerAccountType(formData));
   };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(addAcountTypeSchema),
+  });
+  useEffect(() => {
+    if (errorMsg && errorMsg !== "success") toast.error(errorMsg);
+    else if (errorMsg === "success") toast.success("Success Register Action");
+  }, [errorMsg]);
   return (
     <div className="bg-[#2B2B2B] pt-[80px] pb-10 w-full overflow-hidden">
       <section className="container px-6 mx-auto pt-20">
         <h1 className="text-xl font-bold text-white capitalize dark:text-white text-center">
           Account settings
         </h1>
-        <form onSubmit={onSubmit} className="max-w-4xl mx-auto">
+        <form
+          onSubmit={handleSubmit(onSubmitHandler)}
+          className="max-w-4xl mx-auto"
+        >
           <div className="max-w-5xl mx-auto">
             <div>
-              <label className="text-white dark:text-gray-200" htmlFor="typename">
+              <label
+                className="text-white dark:text-gray-200"
+                htmlFor="typename"
+              >
                 Account Type
               </label>
               <input
                 id="typename"
                 type="text"
+                name="typename"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                {...register("typename")}
               />
             </div>
+            {errors.typename && (
+              <p className="text-xs italic text-red-500 block py-2">
+                {errors.typename.message}
+              </p>
+            )}
             <div>
               <label
                 className="text-white dark:text-gray-200"
@@ -42,9 +80,16 @@ const AddAccountType = () => {
               <textarea
                 id="textarea"
                 type="textarea"
+                name="description"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                {...register("description")}
               ></textarea>
             </div>
+            {errors.description && (
+              <p className="text-xs italic text-red-500 block py-2">
+                {errors.description.message}
+              </p>
+            )}
             <div>
               <label className="block text-sm font-medium text-white">
                 Image
@@ -65,7 +110,7 @@ const AddAccountType = () => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  
+
                   <FileUploader
                     handleChange={handleChange}
                     name="file"
@@ -77,17 +122,10 @@ const AddAccountType = () => {
                         className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span className="">Upload a file</span>
-                        {/* <input
-                        id="file-upload"
-                        name="file-upload"
-                        type="file"
-                        className="sr-only"
-                      /> */}
-
                         {preview && (
                           <img src={preview} className="w-auto h-auto" />
                         )}
-                      </label>    
+                      </label>
                     </div>
                   </FileUploader>
                   <p className="pl-1 text-white">or drag and drop</p>

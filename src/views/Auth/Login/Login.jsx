@@ -15,13 +15,15 @@ import { variants_items, variants } from "../effectValue";
 import IconHuman from "../Icon/IconHuman";
 import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
-import { Link, Navigate} from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 const initialUser = {
   email: "",
   password: "",
 };
 const Login = () => {
+  const navigate = useNavigate();
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
@@ -33,9 +35,10 @@ const Login = () => {
     if (loading === false && loginError) toast.error(loginError);
   }, [loading]);
   useEffect(() => {
+    console.log(successlogin);
     if (successlogin) {
       toast.success("Congratulations");
-      // window.location.href = '/';
+      navigate("/marketplace");
     }
   }, [successlogin]);
   const onSubmitHandler = (data) => {
