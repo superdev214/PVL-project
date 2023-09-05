@@ -15,7 +15,8 @@ import { variants_items, variants } from "../effectValue";
 import IconHuman from "../Icon/IconHuman";
 import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
-import { Link } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
+
 const initialUser = {
   email: "",
   password: "",
@@ -24,12 +25,18 @@ const Login = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
-  const { errorMsg, loading } = useSelector((state) => state.userState);
+  const { loginError, loading, successlogin } = useSelector(
+    (state) => state.userState
+  );
   useEffect(() => {
-    if (errorMsg && loading === false) toast.error(errorMsg);
-    else if(!errorMsg && loading === false) toast.success("Login Success");
+    if (loading === false && loginError) toast.error(loginError);
   }, [loading]);
-
+  useEffect(() => {
+    if (successlogin) {
+      toast.success("Congratulations");
+      window.location.href = '/';
+    }
+  }, [successlogin]);
   const onSubmitHandler = (data) => {
     console.log(data);
     dispatch(loginUser(data));

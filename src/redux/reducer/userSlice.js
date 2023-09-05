@@ -8,7 +8,10 @@ const initialState = {
   errorMsg: null,
   sucessSingup: false,
   loading: false,
+
   loggedin: false,
+  successlogin: false,
+  loginError:null,
 };
 export const registerUser = createAsyncThunk(
   "user/register",
@@ -66,18 +69,21 @@ export const userSlice = createSlice({
     },
     // login
     [loginUser.pending]: (state) => {
+      state.loginError = null;
       state.loading = true;  
+      state.successlogin = false;
     },
     [loginUser.rejected]: (state,action) => {
         console.log("login rejected");
         console.log(action.payload);
         state.loading = false;  
-        state.errorMsg = action.payload;
+        state.loginError = action.payload;
     },
     [loginUser.fulfilled]: (state,action) => {
         localStorage.setItem("token", action.payload.token);
         state.loading = false;
-        state.errorMsg = null;
+        state.loginError = null;
+        state.successlogin = true;
         setUser(state,action);
     },
   },
