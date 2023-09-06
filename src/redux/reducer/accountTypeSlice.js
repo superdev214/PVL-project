@@ -33,7 +33,6 @@ export const getAllAccountType = createAsyncThunk(
   "accountType/getAllAccountType",
   async () => {
     try {
-      console.log("get all account types******");
       const res = await AccountTypeService.getAllAccountType();
       console.log(res);
       return res.data;
