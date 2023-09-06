@@ -4,7 +4,7 @@ const FooterMain = () => {
   return (
     <div className="bg-[#3B3B3B]">
       <div className="container mx-auto px-8 py-10 space-y-10 md:px-12 xl:px-[130px] 2xl:px-[195px]">
-        <div className="xl:flex xl:mx-auto xl:gap-x-[120px] xl:justify-center">
+        <div className="lg:flex lg:mx-auto lg:gap-x-[80px] xl:gap-x-[120px] lg:justify-center">
           <div className="mb-[30px] xl:max-w-[238px]">
             <img
               className="h-[50px] w-[53px] mb-4"

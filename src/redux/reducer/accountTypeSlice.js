@@ -38,7 +38,7 @@ export const getAllAccountType = createAsyncThunk(
       console.log(res);
       return res.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return error;
     }
   }
 );
