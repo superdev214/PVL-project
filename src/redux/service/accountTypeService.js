@@ -6,7 +6,7 @@ const registerAccountType = (data) => {
 const deleteAccountType = (data) => {
   return http.delete("/delete-account-type", data);
 };
-const getAllAccountType = (data) => {
+const getAllAccountType = () => {
     return http.get("/get-all-account-type");
 }
 const AccountTypeService = {

@@ -7,16 +7,16 @@ import SectionSendEmail from "./components/SectionSendEmail";
 
 const Home = () => {
   return (
-    <>
+    <>  
       <div>
-        <SectionDiscoverAccount/>
-        <SectionTopSelling/>
-        <SectionNFTShop/>
-        <SectionHowWorks/>
-        <SectionSendEmail/>
+        <SectionDiscoverAccount />
+        <SectionTopSelling />
+        <SectionNFTShop />
+        <SectionHowWorks />
+        <SectionSendEmail />
       </div>
     </>
-  ); 
+  );
 };
 
 export default Home;

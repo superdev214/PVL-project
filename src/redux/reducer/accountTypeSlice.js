@@ -31,9 +31,10 @@ export const deleteAccountType = createAsyncThunk(
 );
 export const getAllAccountType = createAsyncThunk(
   "accountType/getAllAccountType",
-  async (data, { rejectWithValue }) => {
+  async () => {
     try {
-      const res = await AccountTypeService.getAllAccountType(data);
+      console.log("get all account types******");
+      const res = await AccountTypeService.getAllAccountType();
       console.log(res);
       return res.data;
     } catch (error) {
@@ -52,19 +53,23 @@ export const accountTypeSlice = createSlice({
   extraReducers: {
     [registerAccountType.pending]: (state) => {
         state.errorMsg = "";
-        state.loading = true;
     },
     [registerAccountType.fulfilled]: (state, action) => {
       state.errorMsg = "success";
-      state.loading = false;
       state.accountTypeList.push(action.payload);
     },
     [registerAccountType.rejected]: (state, action) => {
       console.log("rejected");
-      state.loading = false;
       state.errorMsg = action.payload;
-      console.log(state.errorMsg);
-      console.log(action.payload);
+    },
+    [getAllAccountType.pending]: (state) => {
+    },
+    [getAllAccountType.fulfilled]: (state, action) => {
+      state.accountTypeList = action.payload;
+    },
+    [getAllAccountType.rejected]: (state, action) => {
+        console.log("rejected get all account types");
+      state.errorMsg = action.payload;
     },
   },
 });

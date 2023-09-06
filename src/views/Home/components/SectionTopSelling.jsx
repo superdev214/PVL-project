@@ -1,9 +1,11 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import getScrollAnimation from "../../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 import SellingAccount from "./SellingAccount";
 import ButtonOutline from "../../../ui-elements/buttons/ButtonOutline";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
 const fakeAccount = [
   { type: "netflix", price: 6 },
   { type: "spotify", price: 5 },
@@ -16,6 +18,13 @@ const fakeAccount = [
 
 const SectionTopSelling = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  const dispatch = useDispatch();
+  const [showAccountType, setNumItems] = useState(4);
+  const { accountTypeList } = useSelector((state) => state.accountTypeList);
+  useEffect(() => {
+    console.log("request");
+    dispatch(getAllAccountType());
+  }, []);
   return (
     <ScrollAnimationWrapper>
       <div className="bg-[#2B2B2B]">
@@ -33,9 +42,12 @@ const SectionTopSelling = () => {
                 Check out the best selling accounts
               </p>
             </div>
-            <div className="hidden md:block">
+            <div
+              className="hidden md:block"
+              onClick={() => setNumItems(showAccountType === 4 ? 8 : 4)}
+            >
               <ButtonOutline
-                content="Explore More"
+                 content={showAccountType === 4 ? "Explore More" : "Explore less"}
                 userClass="w-full"
                 type="secondary"
               />
@@ -43,22 +55,27 @@ const SectionTopSelling = () => {
           </div>
           {/* account list */}
           <div className="space-y-5 md:space-y-0  md:grid md:grid-cols-2 md:gap-x-[30px] md:gap-y-[30px] xl:grid-cols-4  xl:gap-x-[30px] xl:gap-y-[30px]">
-            {fakeAccount.map((account, id) => {
+            {accountTypeList.slice(0, showAccountType).map((account, id) => {
+              console.log(account);
               return (
                 <SellingAccount
-                  type={account.type}
+                  avatar={account.avatar}
+                  type={account.typename}
                   order={id + 1}
                   key={id}
-                  price={account.price}
+                  price={5}
                   i={id}
                 />
               );
             })}
           </div>
           {/* button */}
-          <div className="md:hidden">
+          <div
+            className="md:hidden"
+            onClick={() => setNumItems(showAccountType === 4 ? 8 : 4)}
+          >
             <ButtonOutline
-              content="Explore More"
+              content={showAccountType === 4 ? "Explore More" : "Explore less"}
               userClass="w-full"
               type="secondary"
             />
