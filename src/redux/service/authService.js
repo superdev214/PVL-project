@@ -12,9 +12,14 @@ const registerUser = (data) => {
 const loginUser = (data) => {
   return http.post("/login", data);
 };
+const getCurrentUser = () => {
+  getToken();
+  return http.get("/get-current-user");
+};
 const UserService = {
   registerUser,
   loginUser,
+  getCurrentUser,
 };
 
 export default UserService;

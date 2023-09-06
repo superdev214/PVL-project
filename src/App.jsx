@@ -24,6 +24,8 @@ import RequireAdmin from "./permission/RequireAdmin";
 import Admin from "./views/Admin/Admin";
 import AddAccountType from "./views/Admin/_admin/AddAccountType";
 import AddAccount from "./views/Admin/_admin/AddAccount";
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "./redux/reducer/userSlice";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -32,7 +34,10 @@ const fakeAccountList = [
   },
 ];
 function App() {
-  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, []);
   return (
     <>
       <ToastContainer />

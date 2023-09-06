@@ -28,19 +28,19 @@ const Login = () => {
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
  
-  const { loginError, loading, successlogin } = useSelector(
+  const { loginError, loading, loggedin } = useSelector(
     (state) => state.userState
   );
   useEffect(() => {
     if (loading === false && loginError) toast.error(loginError);
   }, [loading]);
   useEffect(() => {
-    console.log(successlogin);
-    if (successlogin) {
+    console.log(loggedin);
+    if (loggedin) {
       toast.success("Congratulations");
       navigate("/marketplace");
     }
-  }, [successlogin]);
+  }, [loggedin]);
   const onSubmitHandler = (data) => {
     console.log(data);
     dispatch(loginUser(data));
