@@ -44,9 +44,7 @@ export const getCurrentUser = createAsyncThunk(
       const res = await UserService.getCurrentUser();
       console.log(res);
       return res.data;
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }
 );
 export const userSlice = createSlice({
@@ -75,9 +73,11 @@ export const userSlice = createSlice({
     [getCurrentUser.fulfilled]: (state, action) => {
       console.log("success : get current user");
       console.log(action.payload);
+      if (action.payload) {
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.loggedin = true;
+      } else state.loggedin = false;
     },
     [getCurrentUser.rejected]: (state, action) => {
       console.log("refected : get current user");
@@ -118,7 +118,7 @@ export const userSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       if (action.payload === "Admin success") state.adminPermission = true;
-     localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("token", action.payload.token);
       state.loading = false;
       state.loginError = null;
       state.loggedin = true;
