@@ -117,7 +117,9 @@ export const userSlice = createSlice({
       state.adminPermission = false;
     },
     [loginUser.fulfilled]: (state, action) => {
-      if (action.payload === "Admin success") state.adminPermission = true;
+      console.log("admin");
+      console.log(action.payload);
+      if (action.payload.msg === "Admin success") state.adminPermission = true;
       localStorage.setItem("token", action.payload.token);
       state.loading = false;
       state.loginError = null;
