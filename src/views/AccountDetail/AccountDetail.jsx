@@ -5,13 +5,24 @@ import Icon_World from "./Icon/Icon_World";
 import MoreItems from "./component/MoreItems";
 import AddCartModal from "../../ui-elements/AddCartModal";
 import ReactModal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllAccountType } from "../../redux/reducer/accountTypeSlice";
 const transitionValues = {
   duration: 0.8,
   yoyo: Infinity,
   ease: "easeOut",
 };
-const AccountDetail = (props) => {
-  const { type, color1, explain } = props;
+const AccountDetail = () => {
+  const dispatch = useDispatch();
+  const { accountTypeList, currentIndex } = useSelector(
+    (state) => state.accountTypeList
+  );
+  useEffect(() => {
+    dispatch(getAllAccountType());
+    console.log(accountTypeList[currentIndex].avatar);
+  },[]);
+  // const { typename, description, avatar, priceSixMonths, priceLifeTime } =
+  //   props;
   const [openAccountModal, setOpenAccountModal] = useState(false);
   return (
     <div>
@@ -31,14 +42,14 @@ const AccountDetail = (props) => {
               restDelta: 0.001,
             },
           }}
-          style={{
-            background: `linear-gradient(180deg, ${color1} 0%, rgba(0, 0, 0, 0.00)`,
-          }}
+          // style={{
+          //   background: `linear-gradient(180deg, ${color1} 0%, rgba(0, 0, 0, 0.00)`,
+          // }}
         >
           <img
-            src={`/assets/account/${type} detail.png`}
+            src={`http://localhost:8080/${accountTypeList[currentIndex].avatar}`}
             alt="no Img"
-            className="w-full max-h-[438px] md:max-h-[420px] xl:max-h-[660px]"
+            className="w-full max-h-[438px] md:max-h-[420px] xl:max-h-[660px] object-contain"
           />
         </motion.div>
         <motion.div
@@ -71,9 +82,9 @@ const AccountDetail = (props) => {
                   <div>
                     <h1
                       className="font-work text-[28px] font-semibold
-             leading-[39px] text-white mb-1 capitalize md:text-[38px] xl:text-[51px]"
+             leading-[39px] text-white mb-2 capitalize md:text-[38px] xl:text-[51px]"
                     >
-                      {type}
+                      {accountTypeList[currentIndex].typename}
                     </h1>
                     <p className="font-work text-base font-normal leading-[22px] text-[#858584] md:mb-5 md:text-[22px]">
                       Added on Dec 07, 2022
@@ -129,7 +140,7 @@ const AccountDetail = (props) => {
                 >
                   Add to cart
                 </motion.button>
-                {openAccountModal && <AddCartModal open = {openAccountModal}/>}
+                {openAccountModal && <AddCartModal open={openAccountModal} />}
                 <motion.button
                   whileHover={{ scale: 1.05, color: "#f8e112" }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -166,7 +177,7 @@ const AccountDetail = (props) => {
                 className="font-work text-base font-normal leading-[22px] text-white xl:text-[22px]"
               >
                 {/* {explain} */}
-                Get your Netflix account for a fraction of the price! <br />
+                {/* Get your Netflix account for a fraction of the price! <br />
                 Unlimited films, TV programs and more. <br />
                 Watch anywhere. You can watch as much as you want, whenever you
                 want. There's always something new to discover, and new TV
@@ -178,7 +189,8 @@ const AccountDetail = (props) => {
                 streaming media players and game consoles. You can also download
                 your favorite programs with the iOS, Android, or Windows 10 app.
                 Use downloads to watch while you're on the go and without an
-                internet connection. Take Netflix with you anywhere.
+                internet connection. Take Netflix with you anywhere. */}
+                {accountTypeList[currentIndex].description}
               </motion.span>
             </div>
             <div className="space-y-3">
@@ -187,16 +199,26 @@ const AccountDetail = (props) => {
               </h1>
               <div className="flex gap-x-2.5">
                 <Icon_World />
-                <span className="font-work text-base font-normal leading-[22px] text-white">
-                  Lifetime account available
-                </span>
+                {accountTypeList[currentIndex].priceSixMonths !== 0 && (
+                  <span className="font-work text-base font-normal leading-[22px] text-white">
+                    Lifetime account available
+                  </span>
+                )}
+                {accountTypeList[currentIndex].priceSixMonths === 0 && (
+                  <span className="font-work text-base font-normal leading-[22px] text-white">
+                    Only Lifetime account available
+                  </span>
+                )}
               </div>
-              <div className="flex gap-x-2.5">
-                <Icon_World />
-                <span className="font-work text-base font-normal leading-[22px] text-white">
-                  6 months account available
-                </span>
-              </div>
+
+              {accountTypeList[currentIndex].priceSixMonths !== 0 && (
+                <div className="flex gap-x-2.5">
+                  <Icon_World />
+                  <span className="font-work text-base font-normal leading-[22px] text-white">
+                    6 months account available
+                  </span>{" "}
+                </div>
+              )}
             </div>
           </div>
           <MoreItems />

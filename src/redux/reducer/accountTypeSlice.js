@@ -4,6 +4,7 @@ import AccountTypeService from "../service/accountTypeService";
 const initialState = {
   accountTypeList: [],
   errorMsg: null,
+  currentIndex:0,
 };
 export const registerAccountType = createAsyncThunk(
   "accountType/register",
@@ -44,8 +45,8 @@ export const accountTypeSlice = createSlice({
   initialState,
   name: "accountTypeSlice",
   reducers: {
-    setFormat: (state, action) => {
-      state.i = [];
+    selectedAccount: (state, action) => {
+      state.currentIndex = action.payload;
     },
   },
   extraReducers: {
@@ -74,4 +75,4 @@ export const accountTypeSlice = createSlice({
 
 export default accountTypeSlice.reducer;
 
-export const { setFormat } = accountTypeSlice.actions;
+export const { selectedAccount } = accountTypeSlice.actions;

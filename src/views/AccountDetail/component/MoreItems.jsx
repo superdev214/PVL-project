@@ -32,10 +32,9 @@ const MoreItems = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   const [showAccountType, setNumItems] = useState(3);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllAccountType());
-  }, []);
+  },[]);
   return (
     <ScrollAnimationWrapper>
       <motion.div variants={scrollAnimation} className="py-10 bg-[#2B2B2B]">

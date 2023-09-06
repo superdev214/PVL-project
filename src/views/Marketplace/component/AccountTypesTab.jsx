@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
+import { selectedAccount } from "../../../redux/reducer/accountTypeSlice";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -49,12 +50,11 @@ const fakeAccountList = [
 const AccountTypesTab = () => {
   const dispatch = useDispatch();
   const [draw, setDraw] = useState(false);
-  const { accountTypeList } = useSelector((state) => state.accountTypeList);
+  const { accountTypeList , currentIndex} = useSelector((state) => state.accountTypeList);
   useEffect(() => {
-    // dispatch(getAllAccountType());
-    // console.log(accountTypeList);
-    console.log("accountTypelist");
-    console.log(accountTypeList);
+    console.log("start");
+    // console.log(accountTypeList[0].avatar);
+    dispatch(getAllAccountType());
   }, []);
   return (
     <div
@@ -74,7 +74,7 @@ const AccountTypesTab = () => {
                 to="/accountdetail"
                 key={index}
                 onClick={() => {
-                  setDraw(!draw);
+                  dispatch(selectedAccount(index));
                 }}
               >
                 <AccountTypeCard

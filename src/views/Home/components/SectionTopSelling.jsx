@@ -21,9 +21,6 @@ const SectionTopSelling = () => {
   const dispatch = useDispatch();
   const [showAccountType, setNumItems] = useState(4);
   const { accountTypeList } = useSelector((state) => state.accountTypeList);
-  useEffect(() => {
-    dispatch(getAllAccountType());
-  }, []);
   return (
     <ScrollAnimationWrapper>
       <div className="bg-[#2B2B2B]">
@@ -62,7 +59,7 @@ const SectionTopSelling = () => {
                   type={account.typename}
                   order={id + 1}
                   key={id}
-                  price={5}
+                  price={account.priceLifeTime}
                   i={id}
                 />
               );

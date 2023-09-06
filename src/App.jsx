@@ -24,8 +24,9 @@ import RequireAdmin from "./permission/RequireAdmin";
 import Admin from "./views/Admin/Admin";
 import AddAccountType from "./views/Admin/_admin/AddAccountType";
 import AddAccount from "./views/Admin/_admin/AddAccount";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUser } from "./redux/reducer/userSlice";
+import { getAllAccountType } from "./redux/reducer/accountTypeSlice";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -37,7 +38,12 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUser());
+    dispatch(getAllAccountType());
+    
   }, []);
+  const { accountTypeList, currentIndex } = useSelector(
+    (state) => state.accountTypeList
+  );
   return (
     <>
       <ToastContainer />
@@ -115,7 +121,7 @@ function App() {
           element={
             <RequireAuth>
               <UserLayout>
-                <AccountDetail type={fakeAccountList[0].type} />
+                <AccountDetail/>
               </UserLayout>
             </RequireAuth>
           }
