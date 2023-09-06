@@ -130,7 +130,8 @@ const AccountDetail = () => {
                   className={classNames({
                     "h-[60px] text-base": true,
                     "w-full text-white rounded-[20px] border-2 mx-auto border-[#A259FF] text-center font-work font-semibold leading-[22px] my-auto bg-white": true,
-                    "md:min-w-[235px]": true,
+                    "md:min-w-[235px] ": true,
+                    "disabled:bg-gray-500" : openAccountModal,
                   })}
                   style={{
                     background:

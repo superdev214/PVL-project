@@ -102,23 +102,21 @@ const AddCartModal = (props) => {
                       Cart Total: $ 10.00
                     </p>
                     <div className="w-full mt-6">
-                      <Link to="/proceed">
-                        <motion.button
-                          whileHover={{ scale: 1.05, color: "#f8e112" }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                          className={classNames({
-                            "h-[50px] text-base": true,
-                            "px-[50px] w-full lg:text-lg text-white rounded-[25px] border-2 mx-auto border-[#A259FF] text-center font-work font-semibold leading-[22px] my-auto bg-white": true,
-                          })}
-                          style={{
-                            background:
-                              "linear-gradient(149deg, #A259FF 0%, #FF6250 100%)",
-                          }}
-                          onClick={closeModal}
-                        >
-                          Proceed To Checkout
-                        </motion.button>
-                      </Link>
+                      <motion.button
+                        whileHover={{ scale: 1.05, color: "#f8e112" }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        onClick={() => closeModal()}
+                        className={classNames({
+                          "h-[50px] text-base": true,
+                          "px-[50px] w-full lg:text-lg text-white rounded-[25px] border-2 mx-auto border-[#A259FF] text-center font-work font-semibold leading-[22px] my-auto bg-white": true,
+                        })}
+                        style={{
+                          background:
+                            "linear-gradient(149deg, #A259FF 0%, #FF6250 100%)",
+                        }}
+                      >
+                        Proceed To Checkout
+                      </motion.button>
                     </div>
                   </div>
                 </div>
