@@ -26,6 +26,8 @@ const AddAccountType = () => {
     const formData = new FormData();
     formData.append("typename", data.typename);
     formData.append("description", data.description);
+    formData.append("priceSixMonths",data.priceSixMonths);
+    formData.append("priceLifeTime",data.priceLifeTime);
     formData.append("avatar", file);
     console.log(formData);
     dispatch(registerAccountType(formData));
@@ -98,6 +100,49 @@ const AddAccountType = () => {
                 {errors.description.message}
               </p>
             )}
+            <div className="md:grid grid-cols-2 gap-x-6">
+              <div>
+                <label
+                  className="text-white dark:text-gray-200"
+                  htmlFor="priceSixMonths"
+                >
+                  Price 6 months($)
+                </label>
+                <input
+                  id="priceSixMonths"
+                  type="number"
+                  name="priceSixMonths"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                  {...register("priceSixMonths")}
+                />
+                {errors.priceSixMonths && (
+                  <p className="text-xs italic text-red-500 block py-2">
+                    {errors.priceSixMonths.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label
+                  className="text-white dark:text-gray-200"
+                  htmlFor="typename"
+                >
+                  Price Lifetime($)
+                </label>
+                <input
+                  id="priceLifeTime"
+                  type="number"
+                  name="priceLifeTime"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                  {...register("priceLifeTime")}
+                />
+                {errors.priceLifeTime && (
+                  <p className="text-xs italic text-red-500 block py-2">
+                    {errors.priceLifeTime.message}
+                  </p>
+                )}
+              </div>
+            </div>
             <div>
               <label className="block text-sm font-medium text-white">
                 Image
