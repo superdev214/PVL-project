@@ -49,12 +49,6 @@ const Navbar = () => {
 
                 <Link
                   to="/marketplace"
-                  // className={
-                  //   "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-[17px] text-white" +
-                  //   (activeNavItem === ""
-                  //     ? " text-orange-500 animation-active "
-                  //     : " text-black-500 hover:text-orange-500 ")
-                  // }
                   className="text-sm lg:px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative lg:text-base text-white leading-[22.4px] font-sans font-semibold"
                 >
                   MarketPlace
@@ -192,55 +186,67 @@ const Navbar = () => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          {(ref) => (
-            <div className="md:hidden container mx-auto" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {adminPermission && (
+          {() => (
+            <div
+              className="md:hidden "
+              id="mobile-menu"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(162, 89, 255, 0.20) 100%), #2B2B2B",
+              }}
+            >
+              <div className="container mx-auto">
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                  {adminPermission && (
+                    <Link
+                      to="/admin-user"
+                      className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Add Account
+                    </Link>
+                  )}
                   <Link
-                    to="/admin-user"
+                    to="/marketplace"
                     className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
-                    Add Account
+                    Marketplace
                   </Link>
-                )}
-                <Link
-                  to="/marketplace"
-                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Marketplace
-                </Link>
 
-                <a
-                  href="/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  About Us
-                </a>
-
-                <a
-                  href="/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Cart
-                </a>
-                {!loggedin && (
-                  <Link
-                    to="/login"
+                  <a
+                    href="/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
-                    Log in
-                  </Link>
-                )}
-                {loggedin && (
-                  <button className="w-full text-left" onClick={() => dispatch(logout())}>
+                    About Us
+                  </a>
+
+                  <a
+                    href="/"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Cart
+                  </a>
+                  {!loggedin && (
                     <Link
-                      to="/"
+                      to="/login"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     >
-                      Log out
+                      Log in
                     </Link>
-                  </button>
-                )}
+                  )}
+                  {loggedin && (
+                    <button
+                      className="w-full text-left"
+                      onClick={() => dispatch(logout())}
+                    >
+                      <Link
+                        to="/"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      >
+                        Log out
+                      </Link>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           )}
