@@ -13,7 +13,7 @@ const Admin = () => {
             Account Type
           </h3>
         </Link>
-        <Link className=" glow-on-hover p-2 flex flex-col ">
+        <Link to="/add-account" className=" glow-on-hover p-2 flex flex-col ">
           <img src="plus.png" className="w-[98px] h-[98px] flex mx-auto" />
           <h3 className="font-work font-semibold text-white text-center">
             Add Account

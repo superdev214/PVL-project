@@ -23,6 +23,7 @@ import RequireAuth from "./permission/RequireAuth";
 import RequireAdmin from "./permission/RequireAdmin";
 import Admin from "./views/Admin/Admin";
 import AddAccountType from "./views/Admin/_admin/AddAccountType";
+import AddAccount from "./views/Admin/_admin/AddAccount";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -63,6 +64,17 @@ function App() {
             <RequireAdmin>
               <UserLayout>
                 <AddAccountType />
+              </UserLayout>
+            </RequireAdmin>
+          }
+        />
+        <Route
+          exact
+          path="/add-account"
+          element={
+            <RequireAdmin>
+              <UserLayout>
+                <AddAccount />
               </UserLayout>
             </RequireAdmin>
           }
