@@ -1,11 +1,13 @@
 import AccountTypeCard from "../../Marketplace/component/AccountTypeCard";
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import getScrollAnimation from "../../../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "../../../utils/ScrollAnimationWrapper";
 import { motion } from "framer-motion";
 import classNames from "classnames";
 import AccountDetail from "../AccountDetail";
-import AccountDetilCard from "./AccountDetailCard";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -26,14 +28,23 @@ const fakeAccountList = [
   },
 ];
 const MoreItems = () => {
+  const { accountTypeList } = useSelector((state) => state.accountTypeList);
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  const [showAccountType, setNumItems] = useState(3);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllAccountType());
+  }, []);
   return (
     <ScrollAnimationWrapper>
       <motion.div variants={scrollAnimation} className="py-10 bg-[#2B2B2B]">
         <div className="mb-[30px] md:flex md:justify-between">
-          <h1 className="text-[28px] font-work font-semibold leading-[39px] text-white">
-            More Items
-          </h1>
+          <div className="hover:cursor-pointer" onClick={() => setNumItems(showAccountType === 3 ? 6 : 3)}>
+            <h1 className="text-[28px] font-work font-semibold leading-[39px] text-white">
+              {showAccountType === 3 ? "More Items" : "Less Items"}
+            </h1>
+          </div>
           <motion.button
             whileHover={{ color: "#f8e112" }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -43,23 +54,26 @@ const MoreItems = () => {
               "pvl-btn md:block": true,
             })}
           >
-            {" "}
-            <img
-              src="/assets/account/arrowright.svg"
-              className="w-[20px] h-[20px] inline-block mr-[12px]"
-            />
-            Go To Explore Page
+            <Link to="/marketplace">
+              {" "}
+              <img
+                src="/assets/account/arrowright.svg"
+                className="w-[20px] h-[20px] inline-block mr-[12px]"
+              />
+              Go To Explore Page
+            </Link>
           </motion.button>
         </div>
         <div className="grid grid-cols-1 gap-y-[30px] md:grid-cols-2 xl:grid-cols-3 md:gap-[30px]">
-          {fakeAccountList.map((item, index) => {
+          {accountTypeList.slice(0, showAccountType).map((item, index) => {
             return (
               <AccountTypeCard
-                key={item.type}
-                type={item.type}
-                life_price={item.life_price}
-                six_months_price={item.six_months_price}
-                color1={item.color1}
+                avatar={item.avatar}
+                key={index}
+                type={item.typename}
+                life_price={item.priceLifeTime}
+                six_months_price={item.priceSixMonths}
+                // color1={item.color1}
               />
             );
           })}

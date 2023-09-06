@@ -23,7 +23,7 @@ const itemB = {
 };
 
 const AccountTypeCard = (props) => {
-  const { type, life_price, six_months_price, color1 } = props;
+  const { type, life_price, six_months_price, color1 ,avatar} = props;
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
     <ScrollAnimationWrapper>
@@ -43,7 +43,7 @@ const AccountTypeCard = (props) => {
           }}
         >
           <img
-            src={`/assets/account/${type}.png`}
+            src={`http://localhost:8080/${avatar}`}
             alt="no Img"
             className="w-full max-h-[438px] xl:max-h-[293px] md:max-h-[256px] 2xl:max-h-[356px]"
           />

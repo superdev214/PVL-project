@@ -22,7 +22,6 @@ const SectionTopSelling = () => {
   const [showAccountType, setNumItems] = useState(4);
   const { accountTypeList } = useSelector((state) => state.accountTypeList);
   useEffect(() => {
-    console.log("request");
     dispatch(getAllAccountType());
   }, []);
   return (

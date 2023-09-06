@@ -34,7 +34,6 @@ export const getAllAccountType = createAsyncThunk(
   async () => {
     try {
       const res = await AccountTypeService.getAllAccountType();
-      console.log(res);
       return res.data;
     } catch (error) {
       return error;
