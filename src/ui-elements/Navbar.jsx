@@ -108,7 +108,7 @@ const Navbar = () => {
                     onClick={() => dispatch(logout())}
                   >
                     {" "}
-                    <Link to="/">
+                    <a href="/">
                       <motion.div
                         whileHover={{
                           scale: 1.15,
@@ -123,7 +123,7 @@ const Navbar = () => {
                         />
                         <motion.span> Log out</motion.span>
                       </motion.div>
-                    </Link>
+                    </a>
                   </motion.button>
                 )}
               </div>
@@ -238,12 +238,12 @@ const Navbar = () => {
                       className="w-full text-left"
                       onClick={() => dispatch(logout())}
                     >
-                      <Link
-                        to="/"
+                      <a
+                        href="/"
                         className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                       >
                         Log out
-                      </Link>
+                      </a>
                     </button>
                   )}
                 </div>

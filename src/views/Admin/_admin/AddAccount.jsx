@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { object, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { accountLoginInfoSchema } from "../validationSchema";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addAccount } from "../../../redux/reducer/userSlice";
+import { toast } from "react-toastify";
 const AddAccount = () => {
-  const onSubmitHandler = () => {};
+  const onSubmitHandler = (data) => {
+    console.log(data);
+    dispatch(addAccount(data));
+  };
   const {
     register,
     handleSubmit,
@@ -14,7 +19,17 @@ const AddAccount = () => {
   } = useForm({
     resolver: zodResolver(accountLoginInfoSchema),
   });
-
+  const dispatch = useDispatch();
+  const { addAccountError } = useSelector((state) => state.userState);
+  useEffect(() => {
+    if(addAccountError === 'success')
+      {
+        toast.success("Add account success.");
+        reset();
+      }
+    else if(addAccountError)
+      toast.error(addAccountError);
+  },[addAccountError]);
   return (
     <div className="bg-[#2B2B2B] pt-[80px] pb-10 w-full overflow-hidden">
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
@@ -110,10 +125,7 @@ const AddAccount = () => {
           </div>
 
           <div className="flex justify-end mt-6">
-            <button
-              className="addaccount"
-              type="submit"
-            >
+            <button className="addaccount" type="submit">
               Save
               <span></span>
               <span></span>

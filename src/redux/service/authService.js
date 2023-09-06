@@ -16,6 +16,7 @@ const getCurrentUser = () => {
   getToken();
   return http.get("/get-current-user");
 };
+
 const UserService = {
   registerUser,
   loginUser,
