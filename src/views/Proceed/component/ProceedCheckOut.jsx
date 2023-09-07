@@ -20,29 +20,6 @@ const ProceedCheckOut = () => {
               safely and encrypted etc
             </span>
           </h1>
-          <form className="w-full">
-            <div className="relative">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 right-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              <input
-                type="text"
-                placeholder="Search for the one you want"
-                className="w-full py-3 pl-5 pr-4 text-[#858584] text-base font-work rounded-[20px] outline-none bg-[#3B3B3B]  focus:outline-none placeholder:text-base h-[60px]"
-              />
-            </div>
-          </form>
         </div>
       </motion.div>
     </ScrollAnimationWrapper>

@@ -6,12 +6,10 @@ import AddcartService from "../service/addcartService";
 const initialState = {
   name: "",
   email: "",
-
   errorMsg: null,
   loginError: null,
   addAccountError: null,
   addCartError: null,
-
   sucessSingup: false,
   loading: false,
   loggedin: false,
