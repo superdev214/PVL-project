@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/reducer/userSlice";
+
+import "./effect.css";
 const Navbar = () => {
   const [scrollActive, setScrollActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +21,7 @@ const Navbar = () => {
       setScrollActive(window.scrollY > 20);
     });
   });
+
   return (
     <div
       className={
@@ -30,11 +33,24 @@ const Navbar = () => {
       <nav>
         <div className="container mx-auto px-8 py-2">
           <div className="flex items-center justify-between ">
-            <div className=" flex items-center space-x-9">
+            <div className=" flex items-center space-x-9 typical-style">
               <img className="h-10 w-10" src="/assets/pvl.png" alt="Workflow" />
-              <h1 className="flex gap-x-2 md:text-xl font-mono lg:text-2xl font-semibold text-white leading-[140%]">
-                PVL <span className="hidden xl:flex"> Account </span> Shop
-              </h1>
+              <div className="flex space-x-3">
+                <h1 className="title md:!text-xl !font-mono lg:!text-2xl !font-semibold !text-white leading-[140%]">
+                  <span className="!font-mono !text-4xl !font-semibold !text-white leading-[140%]">
+                    P
+                  </span>
+                  <span className=" !font-mono !text-4xl !font-semibold !text-white leading-[140%]">
+                    V
+                  </span>
+                  <span className=" !font-mono !text-4xl !font-semibold !text-white leading-[140%]">
+                    L
+                  </span>
+                </h1>
+                <h1 className="lg:flex lg:my-auto md:!text-xl !font-mono lg:!text-2xl !font-semibold !text-white leading-[140%] hidden ">
+                  Account Shop
+                </h1>
+              </div>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
@@ -68,13 +84,13 @@ const Navbar = () => {
                 {!loggedin && (
                   <motion.button
                     className={classNames({
-                      "px-[10px] h-[48px]": true,
-                      "text-white rounded-[20px] lg:px-[30px] font-work font-semibold leading-[22px] inline-block lg:h-[60px]": true,
+                      "px-[10px] h-[48px] logBtn": true,
+                      // "text-white rounded-[20px] lg:px-[30px] font-work font-semibold leading-[22px] inline-block lg:h-[60px]": true,
                     })}
-                    style={{
-                      background:
-                        "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
-                    }}
+                    // style={{
+                    //   background:
+                    //     "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
+                    // }}
                   >
                     {" "}
                     <Link to="/login">
@@ -98,13 +114,13 @@ const Navbar = () => {
                 {loggedin && (
                   <motion.button
                     className={classNames({
-                      "px-[10px] h-[48px]": true,
-                      "text-white rounded-[20px] lg:px-[30px] font-work font-semibold leading-[22px] inline-block lg:h-[60px]": true,
+                      "px-[10px] h-[48px] logBtn": true,
+                      // "text-white rounded-[20px] lg:px-[30px] font-work font-semibold leading-[22px] inline-block lg:h-[60px]": true,
                     })}
-                    style={{
-                      background:
-                        "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
-                    }}
+                    // style={{
+                    //   background:
+                    //     "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
+                    // }}
                     onClick={() => dispatch(logout())}
                   >
                     {" "}

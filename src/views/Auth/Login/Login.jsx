@@ -145,7 +145,7 @@ const Login = () => {
                       "linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
                 >
-                  <button type="submit" className="mx-auto">
+                  <button type="submit" className="mx-auto logBtn">
                     Log in
                   </button>
                 </motion.div>
