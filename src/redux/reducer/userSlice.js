@@ -164,7 +164,7 @@ export const userSlice = createSlice({
     },
     // add account to carts by user
     [addAccountToCart.pending] : (state) => {
-      state.addCartError = null;
+      state.addCartError = "";
     },
     [addAccountToCart.fulfilled] : (state, action) => {
       console.log("success");

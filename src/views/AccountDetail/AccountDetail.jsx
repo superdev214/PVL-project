@@ -8,6 +8,8 @@ import ReactModal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAccountType } from "../../redux/reducer/accountTypeSlice";
 import { addAccountToCart } from "../../redux/reducer/userSlice";
+import { toast } from "react-toastify";
+import AddcartService from "../../redux/service/addcartService";
 const transitionValues = {
   duration: 0.8,
   yoyo: Infinity,
@@ -18,7 +20,7 @@ const AccountDetail = () => {
   const { accountTypeList, currentIndex } = useSelector(
     (state) => state.accountTypeList
   );
-  const { email, name } = useSelector((state) => state.userState);
+  const { email, name , addCartError, totalPrice} = useSelector((state) => state.userState);
   useEffect(() => {
     dispatch(getAllAccountType());
     console.log(accountTypeList[currentIndex]);
@@ -31,6 +33,16 @@ const AccountDetail = () => {
     };
     dispatch(addAccountToCart(data));
   };
+  useEffect(() => {
+    if(addCartError === 'success')
+    {
+      toast.success(`Add this account to your carts successfully.\nAll your carts price is ${totalPrice}$.`);
+    }
+    else if (addCartError != null && addCartError != "")
+      {
+        toast.error(addCartError);
+      }
+  },[addCartError]);
   // const { typename, description, avatar, priceSixMonths, priceLifeTime } =
   //   props;
   const [openAccountModal, setOpenAccountModal] = useState(false);

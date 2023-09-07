@@ -39,14 +39,23 @@ function App() {
   useEffect(() => {
     dispatch(getCurrentUser());
     dispatch(getAllAccountType());
-    
   }, []);
   const { accountTypeList, currentIndex } = useSelector(
     (state) => state.accountTypeList
   );
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Routes>
         <Route
           exact
@@ -121,7 +130,7 @@ function App() {
           element={
             <RequireAuth>
               <UserLayout>
-                <AccountDetail/>
+                <AccountDetail />
               </UserLayout>
             </RequireAuth>
           }
