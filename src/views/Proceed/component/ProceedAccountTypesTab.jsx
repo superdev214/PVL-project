@@ -2,6 +2,11 @@ import AccountTypeCard from "../../Marketplace/component/AccountTypeCard";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PaymentForm from "./PaymentForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getAllCart } from "../../../redux/reducer/userSlice";
+import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
+import CartItem from "./CartItem";
 
 const fakeAccountList = [
   {
@@ -23,6 +28,35 @@ const fakeAccountList = [
   },
 ];
 const ProceedAccountTypesTab = () => {
+  const dispatch = useDispatch();
+  const { name, email, addcarts,totalPrice } = useSelector((state) => state.userState);
+  const { accountTypeList } = useSelector((state) => state.accountTypeList);
+  const [cart, setCart] = useState([]);
+  const getAccountInfo = () => {
+    const accountInfo = [];
+    addcarts.forEach((item) => {
+      const {typename, count} = item;
+      const account = accountTypeList.find((acc) => acc.typename === typename);
+      if(account){
+        console.log(account);
+        const {typename, avatar, priceLifeTime} = account;
+        accountInfo.push({typename:typename,price: priceLifeTime, avatar:avatar,count:count});
+      }
+    });
+    setCart(accountInfo);
+  }
+  useEffect(() => {
+    if (email) {
+      console.log(email);
+      dispatch(getAllAccountType);
+      dispatch(getAllCart(email));
+    }
+  }, [email]);
+  useEffect(() => {
+    if(addcarts){
+      getAccountInfo();
+    } 
+  },[addcarts])
   return (
     <div
       style={{
@@ -31,22 +65,20 @@ const ProceedAccountTypesTab = () => {
       }}
     >
       <div className="container mx-auto px-[30px] py-10 grid grid-cols-1 gap-y-[30px] md:grid-cols-2 md:gap-x-[30px] xl:grid-cols-3">
-        {fakeAccountList.map((item, index) => {
+        {cart.map((item, index) => {
           return (
-            <Link to="/accountdetail" key={index}>
-              <AccountTypeCard
+              <CartItem
                 key={index}
-                type={item.type}
-                life_price={item.life_price}
-                six_months_price={item.six_months_price}
-                color1={item.color1}
+                typename={item.typename}
+                price={item.price}
+                avatar={item.avatar}
+                count={item.count}
               />
-            </Link>
           );
         })}
       </div>
       <div className="container mx-auto px-[30px] py-10">
-        <PaymentForm />
+        <PaymentForm price = {totalPrice}/>
       </div>
     </div>
   );

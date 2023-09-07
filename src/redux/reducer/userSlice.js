@@ -13,7 +13,7 @@ const initialState = {
   sucessSingup: false,
   loading: false,
   loggedin: false,
-  addcarts:[],
+  addcarts: [],
   totalPrice: 0,
 
   adminPermission: false,
@@ -73,6 +73,18 @@ export const addAccountToCart = createAsyncThunk(
     }
   }
 );
+// get all cart - addcart serviec - current user - me
+export const getAllCart = createAsyncThunk(
+  "user/getAllCart",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await AddcartService.getAllCartbyUser(data);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   initialState,
@@ -121,11 +133,9 @@ export const userSlice = createSlice({
       state.sucessSingup = true;
     },
     [registerUser.rejected]: (state, action) => {
-
       state.loading = false;
       state.sucessSingup = false;
       state.errorMsg = action.payload;
-    
     },
     // login
     [loginUser.pending]: (state) => {
@@ -149,30 +159,43 @@ export const userSlice = createSlice({
       state.email = action.payload.email;
     },
     // add account by admin
-    [addAccount.pending] : (state) => {
+    [addAccount.pending]: (state) => {
       state.addAccountError = null;
     },
-    [addAccount.fulfilled]: (state,action) => {
+    [addAccount.fulfilled]: (state, action) => {
       state.addAccountError = "success";
     },
-    [addAccount.rejected]: (state,action) => {
+    [addAccount.rejected]: (state, action) => {
       console.log("Rejected : add account ");
       console.log(action.payload);
       state.addAccountError = action.payload;
     },
     // add account to carts by user
-    [addAccountToCart.pending] : (state) => {
+    [addAccountToCart.pending]: (state) => {
       state.addCartError = "";
     },
-    [addAccountToCart.fulfilled] : (state, action) => {
+    [addAccountToCart.fulfilled]: (state, action) => {
       console.log("success");
       console.log(action.payload);
       state.totalPrice = action.payload.total_price;
       state.addCartError = action.payload.message;
     },
-    [addAccountToCart.rejected] : (state, action) => {
+    [addAccountToCart.rejected]: (state, action) => {
       console.log("rejected:add Account to cart ");
       state.addCartError = action.payload;
+    },
+    // get all cart by current user
+    [getAllCart.pending]: (state) => {
+      console.log("pending");
+    },
+    [getAllCart.fulfilled]: (state, action) => {
+      console.log("success get all carts");
+      console.log(action.payload);
+      state.addcarts = action.payload.addcart;
+      state.totalPrice = action.payload.totalPrice;
+    },
+    [getAllCart.rejected]: (state, action) => {
+      console.log("rejected get all carts");
     },
   },
 });

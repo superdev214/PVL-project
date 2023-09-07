@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames";
-const PaymentForm = () => {
+const PaymentForm = (props) => {
+  const { price } = props;
   return (
     <>
       <div
@@ -13,7 +14,7 @@ const PaymentForm = () => {
         <form>
           <div>
             <h1 className="font-work text-[23px] leading-[36px] mb-2.5 font-semibold text-white md:text-[36px] xl:text-[52px] xl:leading-[84px]">
-              10.00 $
+              {price}.00 $
             </h1>
             <p className="text-sm font-work text-white mb-2.5 xl:text-xl">
               Pay By Bank Card
@@ -60,7 +61,7 @@ const PaymentForm = () => {
               <input
                 type="text"
                 id="cardnumber"
-                className="bg-white pl-12 py-2 md:py-3 focus:outline-none w-full rounded-[5px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-gray-500 xl:placeholder:text-xl xl:text-xl" 
+                className="bg-white pl-12 py-2 md:py-3 focus:outline-none w-full rounded-[5px] placeholder:font-work placeholder:text-base placeholder:leading-[22px] placeholder:text-gray-500 xl:placeholder:text-xl xl:text-xl"
                 placeholder="Card Number"
               />
             </div>

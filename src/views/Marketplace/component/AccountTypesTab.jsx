@@ -5,54 +5,13 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
 import { selectedAccount } from "../../../redux/reducer/accountTypeSlice";
-const fakeAccountList = [
-  {
-    type: "netflix",
-    life_price: 1.63,
-    six_months_price: 0.33,
-  },
-  {
-    type: "spotify",
-    life_price: 1.63,
-    six_months_price: 0.33,
-    color1: "rgba(30, 215, 96, 0.50)",
-  },
-  {
-    type: "crunchyroll",
-    life_price: 5.0,
-    six_months_price: 0,
-    color1: "rgba(255, 141, 14, 0.50)",
-  },
-  {
-    type: "nordvpn",
-    life_price: 5.0,
-    six_months_price: 0,
-    color1: "rgba(82, 184, 252, 0.50)",
-  },
-  {
-    type: "hbo max",
-    life_price: 5.0,
-    six_months_price: 0,
-    color1: "rgba(90, 21, 207, 0.50)",
-  },
-  {
-    type: "discord nitro",
-    life_price: 5.0,
-    six_months_price: 15.0,
-    color1: "rgba(140, 158, 255, 0.50)",
-  },
-  {
-    type: "unknown prototype",
-    life_price: 5.0,
-    six_months_price: 10.0,
-  },
-];
+
 const AccountTypesTab = () => {
   const dispatch = useDispatch();
   const [draw, setDraw] = useState(false);
   const { accountTypeList , currentIndex} = useSelector((state) => state.accountTypeList);
   useEffect(() => {
-    console.log("start");
+    // console.log("start");
     // console.log(accountTypeList[0].avatar);
     dispatch(getAllAccountType());
   }, []);
