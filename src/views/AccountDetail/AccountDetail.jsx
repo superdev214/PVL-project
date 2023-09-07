@@ -36,7 +36,7 @@ const AccountDetail = () => {
   useEffect(() => {
     if(addCartError === 'success')
     {
-      toast.success(`Add this account to your carts successfully.\nAll your carts price is ${totalPrice}$.`);
+      toast.success(`Success! So All your carts price is ${totalPrice}$.`);
     }
     else if (addCartError != null && addCartError != "")
       {
