@@ -7,6 +7,7 @@ import AddCartModal from "../../ui-elements/AddCartModal";
 import ReactModal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAccountType } from "../../redux/reducer/accountTypeSlice";
+import { addAccountToCart } from "../../redux/reducer/userSlice";
 const transitionValues = {
   duration: 0.8,
   yoyo: Infinity,
@@ -17,10 +18,19 @@ const AccountDetail = () => {
   const { accountTypeList, currentIndex } = useSelector(
     (state) => state.accountTypeList
   );
+  const { email, name } = useSelector((state) => state.userState);
   useEffect(() => {
     dispatch(getAllAccountType());
-    console.log(accountTypeList[currentIndex].avatar);
-  },[]);
+    console.log(accountTypeList[currentIndex]);
+  }, []);
+  const onHandlewithAddToCartBtn = () => {
+    console.log(accountTypeList[currentIndex].typename);
+    const data = {
+      typename: accountTypeList[currentIndex].typename,
+      user_email: email,
+    };
+    dispatch(addAccountToCart(data));
+  };
   // const { typename, description, avatar, priceSixMonths, priceLifeTime } =
   //   props;
   const [openAccountModal, setOpenAccountModal] = useState(false);
@@ -131,15 +141,14 @@ const AccountDetail = () => {
                     "h-[60px] text-base": true,
                     "w-full text-white rounded-[20px] border-2 mx-auto border-[#A259FF] text-center font-work font-semibold leading-[22px] my-auto bg-white": true,
                     "md:min-w-[235px] ": true,
-                    "disabled:bg-gray-500" : openAccountModal,
                   })}
                   style={{
                     background:
                       "linear-gradient(170deg, #A259FF 0%, #377DF7 100%), linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
                   }}
-                  onClick={() => setOpenAccountModal(true)}
+                  onClick={() => onHandlewithAddToCartBtn()}
                 >
-                  Add to cart
+                  Add to Cart
                 </motion.button>
                 {openAccountModal && <AddCartModal open={openAccountModal} />}
                 <motion.button

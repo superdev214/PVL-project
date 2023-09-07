@@ -2,18 +2,21 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { act } from "react-dom/test-utils";
 import UserService from "../service/authService";
 import AdminService from "../service/adminService";
-
+import AddcartService from "../service/addcartService";
 const initialState = {
   name: "",
   email: "",
+
   errorMsg: null,
   loginError: null,
   addAccountError: null,
+  addCartError: null,
 
   sucessSingup: false,
   loading: false,
   loggedin: false,
-
+  addcarts:[],
+  totalPrice: 0,
 
   adminPermission: false,
 };
@@ -48,7 +51,7 @@ export const getCurrentUser = createAsyncThunk(
     } catch (error) {}
   }
 );
-// add account
+// add account - admin service
 export const addAccount = createAsyncThunk(
   "user/addAccount",
   async (data, { rejectWithValue }) => {
@@ -60,6 +63,19 @@ export const addAccount = createAsyncThunk(
     }
   }
 );
+// add account to carts - addcart service
+export const addAccountToCart = createAsyncThunk(
+  "user/addAccountToCart",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await AddcartService.addAccountToCart(data);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   initialState,
   name: "userSlice",
@@ -72,6 +88,9 @@ export const userSlice = createSlice({
       state.loading = false;
       state.loggedin = false;
       state.loginError = null;
+      state.addcarts=[];
+      state.addCartError = null,
+      state.totalPrice = 0;
       state.adminPermission = false;
       localStorage.removeItem("token");
     },
@@ -128,7 +147,8 @@ export const userSlice = createSlice({
       state.loading = false;
       state.loginError = null;
       state.loggedin = true;
-      setUser(state, action);
+      state.name = action.payload.name;
+      state.email = action.payload.email;
     },
     // add account by admin
     [addAccount.pending] : (state) => {
@@ -141,7 +161,21 @@ export const userSlice = createSlice({
       console.log("Rejected : add account ");
       console.log(action.payload);
       state.addAccountError = action.payload;
-    }
+    },
+    // add account to carts by user
+    [addAccountToCart.pending] : (state) => {
+      state.addCartError = null;
+    },
+    [addAccountToCart.fulfilled] : (state, action) => {
+      console.log("success");
+      console.log(action.payload);
+      state.totalPrice = action.payload.total_price;
+      state.addCartError = action.payload.message;
+    },
+    [addAccountToCart.rejected] : (state, action) => {
+      console.log("rejected:add Account to cart ");
+      state.addCartError = action.payload;
+    },
   },
 });
 
