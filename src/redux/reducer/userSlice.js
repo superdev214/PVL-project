@@ -86,8 +86,8 @@ export const userSlice = createSlice({
       state.loading = false;
       state.loggedin = false;
       state.loginError = null;
-      state.addcarts=[];
-      state.addCartError = null,
+      state.addcarts = [];
+      state.addCartError = null;
       state.totalPrice = 0;
       state.adminPermission = false;
       localStorage.removeItem("token");
