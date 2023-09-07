@@ -23,10 +23,8 @@ const AccountDetail = () => {
   const { email, name , addCartError, totalPrice} = useSelector((state) => state.userState);
   useEffect(() => {
     dispatch(getAllAccountType());
-    console.log(accountTypeList[currentIndex]);
   }, []);
   const onHandlewithAddToCartBtn = () => {
-    console.log(accountTypeList[currentIndex].typename);
     const data = {
       typename: accountTypeList[currentIndex].typename,
       user_email: email,
