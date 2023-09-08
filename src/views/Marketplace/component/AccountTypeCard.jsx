@@ -30,7 +30,7 @@ const AccountTypeCard = (props) => {
       <motion.div
         variants={effect}
         whileHover={{
-          scale: 1.05,
+          scale: 1.08,
           transition: { duration: 0.5 },
         }}
         whileTap={{ scale: 0.9 }}

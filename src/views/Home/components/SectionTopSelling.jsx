@@ -53,16 +53,6 @@ const SectionTopSelling = () => {
             </div>
           </div>
 
-          <div class="button" id="button-7">
-            <div id="dub-arrow">
-              <img
-                src="https://github.com/atloomer/atloomer.github.io/blob/master/img/iconmonstr-arrow-48-240.png?raw=true"
-                alt=""
-              />
-            </div>
-            <a href="#">Let's Go!</a>
-          </div>
-
           {/* account list */}
           <div className="space-y-5 md:space-y-0  md:grid md:grid-cols-2 md:gap-x-[30px] md:gap-y-[30px] xl:grid-cols-4  xl:gap-x-[30px] xl:gap-y-[30px]">
             {accountTypeList.slice(0, showAccountType).map((account, id) => {

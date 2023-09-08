@@ -7,7 +7,7 @@ import classNames from "classnames";
 import AccountDetail from "../AccountDetail";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
+import { getAllAccountType, selectedAccount } from "../../../redux/reducer/accountTypeSlice";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -34,12 +34,15 @@ const MoreItems = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllAccountType());
-  },[]);
+  }, []);
   return (
     <ScrollAnimationWrapper>
       <motion.div variants={scrollAnimation} className="py-10 bg-[#2B2B2B]">
         <div className="mb-[30px] md:flex md:justify-between">
-          <div className="hover:cursor-pointer" onClick={() => setNumItems(showAccountType === 3 ? 6 : 3)}>
+          <div
+            className="hover:cursor-pointer"
+            onClick={() => setNumItems(showAccountType === 3 ? 6 : 3)}
+          >
             <h1 className="text-[28px] font-work font-semibold leading-[39px] text-white">
               {showAccountType === 3 ? "More Items" : "Less Items"}
             </h1>
@@ -66,14 +69,22 @@ const MoreItems = () => {
         <div className="grid grid-cols-1 gap-y-[30px] md:grid-cols-2 xl:grid-cols-3 md:gap-[30px]">
           {accountTypeList.slice(0, showAccountType).map((item, index) => {
             return (
-              <AccountTypeCard
-                avatar={item.avatar}
+              <Link
+                to="/accountdetail"
                 key={index}
-                type={item.typename}
-                life_price={item.priceLifeTime}
-                six_months_price={item.priceSixMonths}
-                // color1={item.color1}
-              />
+                onClick={() => {
+                  dispatch(selectedAccount(index));
+                }}
+              >
+                <AccountTypeCard
+                  avatar={item.avatar}
+                  key={index}
+                  type={item.typename}
+                  life_price={item.priceLifeTime}
+                  six_months_price={item.priceSixMonths}
+                  // color1={item.color1}
+                />
+              </Link>
             );
           })}
           <motion.button

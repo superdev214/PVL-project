@@ -20,11 +20,14 @@ const AccountDetail = () => {
   const { accountTypeList, currentIndex } = useSelector(
     (state) => state.accountTypeList
   );
-  const { email, name , addCartError, totalPrice} = useSelector((state) => state.userState);
+  const { email, name , addCartError, totalPrice, adminPermission} = useSelector((state) => state.userState);
   useEffect(() => {
     dispatch(getAllAccountType());
   }, []);
   const onHandlewithAddToCartBtn = () => {
+    if (adminPermission) {
+     return toast.warn("You are admin. Please login as user");
+    }
     const data = {
       typename: accountTypeList[currentIndex].typename,
       user_email: email,

@@ -20,6 +20,7 @@ const Navbar = () => {
     window.addEventListener("scroll", () => {
       setScrollActive(window.scrollY > 20);
     });
+    console.log("adminpermission:",adminPermission);
   });
 
   return (

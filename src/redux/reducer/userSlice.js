@@ -116,6 +116,7 @@ export const userSlice = createSlice({
       if (action.payload) {
         state.name = action.payload.name;
         state.email = action.payload.email;
+        if(state.name === "admin") state.adminPermission = true;
         state.loggedin = true;
       } else state.loggedin = false;
     },
