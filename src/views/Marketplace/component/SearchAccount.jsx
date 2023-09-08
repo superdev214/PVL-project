@@ -7,8 +7,8 @@ const SearchAccount = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
     <ScrollAnimationWrapper>
-      <motion.div variants={scrollAnimation} className="bg-[#2B2B2B] pt-[80px] pb-10">
-        <div className="container mx-auto px-[30px] my-10 space-y-[30px]">
+      <motion.div className="bg-[#2B2B2B] pt-[80px] pb-10">
+        <motion.div variants={scrollAnimation} className="container mx-auto px-[30px] my-10 space-y-[30px]">
           <h1 className="font-work text-[28px] font-semibold leading-[39px] capitalize space-y-[10px] text-white md:text-[38px] md:leading-[46px] xl:text-[51px] xl:leading-[56px]">
             Browse Marketplace
             <br />
@@ -40,7 +40,7 @@ const SearchAccount = () => {
               />
             </div>
           </form>
-        </div>
+        </motion.div>
       </motion.div>
     </ScrollAnimationWrapper>
   );

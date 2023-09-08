@@ -20,13 +20,14 @@ const AccountDetail = () => {
   const { accountTypeList, currentIndex } = useSelector(
     (state) => state.accountTypeList
   );
-  const { email, name , addCartError, totalPrice, adminPermission} = useSelector((state) => state.userState);
+  const { email, name, addCartError, totalPrice, adminPermission } =
+    useSelector((state) => state.userState);
   useEffect(() => {
     dispatch(getAllAccountType());
   }, []);
   const onHandlewithAddToCartBtn = () => {
     if (adminPermission) {
-     return toast.warn("You are admin. Please login as user");
+      return toast.warn("You are admin. Please login as user");
     }
     const data = {
       typename: accountTypeList[currentIndex].typename,
@@ -35,15 +36,12 @@ const AccountDetail = () => {
     dispatch(addAccountToCart(data));
   };
   useEffect(() => {
-    if(addCartError === 'success')
-    {
+    if (addCartError === "success") {
       toast.success(`Success! So All your carts price is ${totalPrice}$.`);
+    } else if (addCartError != null && addCartError != "") {
+      toast.error(addCartError);
     }
-    else if (addCartError != null && addCartError != "")
-      {
-        toast.error(addCartError);
-      }
-  },[addCartError]);
+  }, [addCartError]);
   // const { typename, description, avatar, priceSixMonths, priceLifeTime } =
   //   props;
   const [openAccountModal, setOpenAccountModal] = useState(false);
@@ -70,7 +68,7 @@ const AccountDetail = () => {
           // }}
         >
           <img
-            src={`http://localhost:8080/${accountTypeList[currentIndex].avatar}`}
+            src={`${process.env.REACT_APP_BASE_URL}/${accountTypeList[currentIndex].avatar}`}
             alt="no Img"
             className="w-full max-h-[438px] md:max-h-[420px] xl:max-h-[660px] object-contain"
           />
