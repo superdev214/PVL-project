@@ -71,7 +71,7 @@ const CartItem = (props) => {
               <h4 className="text-[#858584] font-mono text-sm">
                 Price:
               </h4>
-              <p className="text-white font-mono text-sm font-normal leading-[13px]">
+              <p className="text-white font-mono text-sm font-normal leading-[13px] !text-center">
                 ${price}
               </p>
             </div>
@@ -80,7 +80,7 @@ const CartItem = (props) => {
                 <h4 className="text-[#858584] font-mono text-sm">
                   Count:
                 </h4>
-                <p className="text-white font-mono text-sm font-normal leading-[13px]">
+                <p className="text-white font-mono text-sm font-normal leading-[13px] text-center">
                   {count} 
                 </p>
               </div>

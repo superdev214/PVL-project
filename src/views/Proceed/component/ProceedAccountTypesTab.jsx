@@ -8,6 +8,7 @@ import { getAllCart } from "../../../redux/reducer/userSlice";
 import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
 import CartItem from "./CartItem";
 import "./effect.css";
+import { toast } from "react-toastify";
 const fakeAccountList = [
   {
     type: "netflix",
@@ -29,9 +30,8 @@ const fakeAccountList = [
 ];
 const ProceedAccountTypesTab = () => {
   const dispatch = useDispatch();
-  const { name, email, addcarts, totalPrice, adminPermission } = useSelector(
-    (state) => state.userState
-  );
+  const { name, email, addcarts, totalPrice, adminPermission, accountInfoMsg } =
+    useSelector((state) => state.userState);
   const { accountTypeList } = useSelector((state) => state.accountTypeList);
   const [cart, setCart] = useState([]);
   const getAccountInfo = () => {
@@ -64,6 +64,16 @@ const ProceedAccountTypesTab = () => {
       getAccountInfo();
     }
   }, [addcarts]);
+  useEffect(() => {
+    if (accountInfoMsg === "Success") {
+      toast.success(
+        "Account info sent to your email. Please check your email."
+      );
+      dispatch(getAllCart(email));
+    } else if (accountInfoMsg !== null && accountInfoMsg !== "pending") {
+      toast.error("Account info sent to your email. Please check your email.");
+    }
+  }, [accountInfoMsg]);
   return (
     <div
       style={{

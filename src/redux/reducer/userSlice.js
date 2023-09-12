@@ -3,6 +3,7 @@ import { act } from "react-dom/test-utils";
 import UserService from "../service/authService";
 import AdminService from "../service/adminService";
 import AddcartService from "../service/addcartService";
+import SendAccountInfoService from "../service/sendAccountInfoService";
 const initialState = {
   name: "",
   email: "",
@@ -17,6 +18,8 @@ const initialState = {
   totalPrice: 0,
 
   adminPermission: false,
+
+  accountInfoMsg: null,
 };
 export const registerUser = createAsyncThunk(
   "user/register",
@@ -85,7 +88,18 @@ export const getAllCart = createAsyncThunk(
     }
   }
 );
-
+// send account info by email to user
+export const sendAccountInfo = createAsyncThunk(
+  "user/sendAccountInfo",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await SendAccountInfoService.sendAccountByEmail(data);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 export const userSlice = createSlice({
   initialState,
   name: "userSlice",
@@ -102,6 +116,7 @@ export const userSlice = createSlice({
       state.addCartError = null;
       state.totalPrice = 0;
       state.adminPermission = false;
+      state.accountInfoMsg = null;
       localStorage.removeItem("token");
     },
     setUser: (state, action) => {
@@ -116,7 +131,7 @@ export const userSlice = createSlice({
       if (action.payload) {
         state.name = action.payload.name;
         state.email = action.payload.email;
-        if(state.name === "admin") state.adminPermission = true;
+        if (state.name === "admin") state.adminPermission = true;
         state.loggedin = true;
       } else state.loggedin = false;
     },
@@ -197,6 +212,21 @@ export const userSlice = createSlice({
     },
     [getAllCart.rejected]: (state, action) => {
       console.log("rejected get all carts");
+    },
+    [sendAccountInfo.pending]: (state) => {
+      console.log("email pending");
+      state.accountInfoMsg = "pending";
+    },
+    [sendAccountInfo.fulfilled]: (state,action) => {
+      console.log("email fulfiled");
+      console.log(action.payload)
+      state.accountInfoMsg = action.payload.msg;
+      // state.addcarts = action.payload.addcart;
+    },
+    [sendAccountInfo.rejected]: (state,action) => {
+      console.log("email rejected");
+      
+      state.accountInfoMsg = action.payload;
     },
   },
 });

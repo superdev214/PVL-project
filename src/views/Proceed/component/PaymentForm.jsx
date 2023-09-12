@@ -1,7 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { sendAccountInfo } from "../../../redux/reducer/userSlice";
+
 const PaymentForm = (props) => {
+  const dispatch = useDispatch();
+  const { email } = useSelector((state) => state.userState);
+  const handleWithProceed = () => {
+    dispatch(sendAccountInfo({email:email}));
+  };
   const { price } = props;
   return (
     <>
@@ -164,6 +172,7 @@ const PaymentForm = (props) => {
             background:
               "linear-gradient(170deg, #A259FF 0%, #377DF7 100%), linear-gradient(149deg, #A259FF 0%, #FF6250 100%), #A259FF",
           }}
+          onClick={handleWithProceed}
         >
           Proceed!
         </motion.button>
