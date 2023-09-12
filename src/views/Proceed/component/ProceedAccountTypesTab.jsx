@@ -71,7 +71,7 @@ const ProceedAccountTypesTab = () => {
       );
       dispatch(getAllCart(email));
     } else if (accountInfoMsg !== null && accountInfoMsg !== "pending") {
-      toast.error("Account info sent to your email. Please check your email.");
+      toast.error(accountInfoMsg);
     }
   }, [accountInfoMsg]);
   return (
