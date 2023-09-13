@@ -16,6 +16,7 @@ import IconHuman from "../Icon/IconHuman";
 import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
 import PendingProcesss from "../../../ui-elements/PendingProcess";
+import { useNavigate } from 'react-router-dom'
 
 const initialUser = {
   name: "",
@@ -26,6 +27,7 @@ const SignUp = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { errorMsg, loading, sucessSingup ,pendingSignup} = useSelector(
     (state) => state.userState
   );
@@ -33,7 +35,10 @@ const SignUp = () => {
     if (errorMsg && loading === false) toast.error(errorMsg);
   }, [loading]);
   useEffect(() => {
-    if (sucessSingup) toast.success("Sign up success");
+    if (sucessSingup) {
+      toast.success("Sign up success");
+      navigate("/login");
+    }
   }, [sucessSingup]);
   
   const onSubmitHandler = (data) => {
