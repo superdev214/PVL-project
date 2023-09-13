@@ -1,10 +1,14 @@
 import AccountTypeCard from "../../Marketplace/component/AccountTypeCard";
+import PendingProcesss from "../../../ui-elements/PendingProcess";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PaymentForm from "./PaymentForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllCart } from "../../../redux/reducer/userSlice";
+import {
+  getAllCart,
+  setFormatAccountInfoMsg,
+} from "../../../redux/reducer/userSlice";
 import { getAllAccountType } from "../../../redux/reducer/accountTypeSlice";
 import CartItem from "./CartItem";
 import "./effect.css";
@@ -74,6 +78,9 @@ const ProceedAccountTypesTab = () => {
       toast.error(accountInfoMsg);
     }
   }, [accountInfoMsg]);
+  useEffect(() => {
+    dispatch(setFormatAccountInfoMsg());
+  }, []);
   return (
     <div
       style={{
@@ -81,6 +88,10 @@ const ProceedAccountTypesTab = () => {
           " linear-gradient(180deg, rgba(162, 89, 255, 0.20) 0%, rgba(0, 0, 0, 0.00) 100%), #3B3B3B",
       }}
     >
+      {accountInfoMsg === "pending" && (
+        <PendingProcesss/>
+      )}
+
       {!adminPermission && (
         <div className="container mx-auto px-[30px] py-10 grid grid-cols-1 gap-y-[30px] md:grid-cols-2 md:gap-x-[30px] xl:grid-cols-3">
           {cart.map((item, index) => {

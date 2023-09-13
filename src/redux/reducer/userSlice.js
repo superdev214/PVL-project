@@ -123,6 +123,9 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
     },
+    setFormatAccountInfoMsg: (state) => {
+      state.accountInfoMsg = null;
+    },
   },
   extraReducers: {
     // get current user
@@ -217,15 +220,15 @@ export const userSlice = createSlice({
       console.log("email pending");
       state.accountInfoMsg = "pending";
     },
-    [sendAccountInfo.fulfilled]: (state,action) => {
+    [sendAccountInfo.fulfilled]: (state, action) => {
       console.log("email fulfiled");
-      console.log(action.payload)
+      console.log(action.payload);
       state.accountInfoMsg = action.payload.msg;
       // state.addcarts = action.payload.addcart;
     },
-    [sendAccountInfo.rejected]: (state,action) => {
+    [sendAccountInfo.rejected]: (state, action) => {
       console.log("email rejected");
-      
+
       state.accountInfoMsg = action.payload;
     },
   },
@@ -233,4 +236,4 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { logout, setUser } = userSlice.actions;
+export const { logout, setUser ,setFormatAccountInfoMsg} = userSlice.actions;
