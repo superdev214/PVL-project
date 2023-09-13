@@ -6,6 +6,7 @@ import { accountLoginInfoSchema } from "../validationSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { addAccount } from "../../../redux/reducer/userSlice";
 import { toast } from "react-toastify";
+import PendingProcesss from "../../../ui-elements/PendingProcess";
 const AddAccount = () => {
   const onSubmitHandler = (data) => {
     console.log(data);
@@ -20,18 +21,18 @@ const AddAccount = () => {
     resolver: zodResolver(accountLoginInfoSchema),
   });
   const dispatch = useDispatch();
-  const { addAccountError } = useSelector((state) => state.userState);
+  const { addAccountError, pendingAddAccount } = useSelector(
+    (state) => state.userState
+  );
   useEffect(() => {
-    if(addAccountError === 'success')
-      {
-        toast.success("Add account success.");
-        reset();
-      }
-    else if(addAccountError)
-      toast.error(addAccountError);
-  },[addAccountError]);
+    if (addAccountError === "success") {
+      toast.success("Add account success.");
+      reset();
+    } else if (addAccountError) toast.error(addAccountError);
+  }, [addAccountError]);
   return (
     <div className="bg-[#2B2B2B] pt-[80px] pb-10 w-full overflow-hidden">
+      {pendingAddAccount && <PendingProcesss />}
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
         <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
           Account Login information

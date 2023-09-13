@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerAccountType } from "../../../redux/reducer/accountTypeSlice";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
+import PendingProcesss from "../../../ui-elements/PendingProcess";
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 const AddAccountType = () => {
@@ -51,6 +52,9 @@ const AddAccountType = () => {
   }, [errorMsg]);
   return (
     <div className="bg-[#2B2B2B] pt-[80px] pb-10 w-full overflow-hidden">
+      {errorMsg === "pending" && (
+        <PendingProcesss/>
+      )}
       <section className="container px-6 mx-auto pt-20">
         <h1 className="text-xl font-bold text-white capitalize dark:text-white text-center">
           Account settings

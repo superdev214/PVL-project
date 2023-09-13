@@ -51,7 +51,7 @@ export const accountTypeSlice = createSlice({
   },
   extraReducers: {
     [registerAccountType.pending]: (state) => {
-        state.errorMsg = "";
+        state.errorMsg = "pending";
     },
     [registerAccountType.fulfilled]: (state, action) => {
       state.errorMsg = "success";

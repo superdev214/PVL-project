@@ -15,6 +15,7 @@ import { variants_items, variants } from "../effectValue";
 import IconHuman from "../Icon/IconHuman";
 import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
+import PendingProcesss from "../../../ui-elements/PendingProcess";
 
 const initialUser = {
   name: "",
@@ -25,7 +26,7 @@ const SignUp = () => {
   const scrollAnimation = useMemo(() => getUserAnimation(), []);
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
-  const { errorMsg, loading, sucessSingup } = useSelector(
+  const { errorMsg, loading, sucessSingup ,pendingSignup} = useSelector(
     (state) => state.userState
   );
   useEffect(() => {
@@ -47,6 +48,9 @@ const SignUp = () => {
   });
   return (
     <div>
+      {pendingSignup && (
+        <PendingProcesss/>
+      )}
       <ScrollAnimationWrapper>
         <motion.div variants={scrollAnimation} className="bg-[#2B2B2B]">
           <div className="container pt-[80px] mx-auto px-[30px] md:grid md:grid-cols-2 md:gap-x-10">

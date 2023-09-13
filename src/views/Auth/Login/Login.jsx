@@ -17,6 +17,7 @@ import IconKey from "../Icon/IconKey";
 import IconLetter from "../Icon/IconLetter";
 import { Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
+import PendingProcesss from "../../../ui-elements/PendingProcess";
 
 const initialUser = {
   email: "",
@@ -28,7 +29,7 @@ const Login = () => {
   const [user, setUserinfo] = useState(initialUser);
   const dispatch = useDispatch();
  
-  const { loginError, loading, loggedin } = useSelector(
+  const { loginError, loading, loggedin ,pendingLoggin} = useSelector(
     (state) => state.userState
   );
   useEffect(() => {
@@ -54,6 +55,9 @@ const Login = () => {
   });
   return (
     <div>
+      {pendingLoggin && (
+        <PendingProcesss/>
+      )}
       <ScrollAnimationWrapper>
         <motion.div variants={scrollAnimation} className="bg-[#2B2B2B]">
           <div className="container pt-[80px] mx-auto px-[30px] md:grid md:grid-cols-2 md:gap-x-10">

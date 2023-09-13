@@ -17,6 +17,10 @@ const initialState = {
   addcarts: [],
   totalPrice: 0,
 
+  pendingLoggin: false,
+  pendingSignup: false,
+  pendingAddAccount: false,
+
   adminPermission: false,
 
   accountInfoMsg: null,
@@ -117,6 +121,10 @@ export const userSlice = createSlice({
       state.totalPrice = 0;
       state.adminPermission = false;
       state.accountInfoMsg = null;
+
+      state.pendingLoggin = false;
+      state.pendingSignup = false;
+      state.pendingAddAccount = false;
       localStorage.removeItem("token");
     },
     setUser: (state, action) => {
@@ -145,16 +153,20 @@ export const userSlice = createSlice({
     [registerUser.pending]: (state) => {
       state.loading = true;
       state.sucessSingup = false;
+      state.pendingSignup = true;
     },
     [registerUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.errorMsg = null;
       state.sucessSingup = true;
+      state.pendingSignup = false;
     },
     [registerUser.rejected]: (state, action) => {
       state.loading = false;
       state.sucessSingup = false;
       state.errorMsg = action.payload;
+      state.pendingSignup = false;
+
     },
     // login
     [loginUser.pending]: (state) => {
@@ -162,11 +174,14 @@ export const userSlice = createSlice({
       state.loading = true;
       state.loggedin = false;
       state.adminPermission = false;
+      state.pendingLoggin = true;
     },
     [loginUser.rejected]: (state, action) => {
       state.loading = false;
       state.loginError = action.payload;
       state.adminPermission = false;
+      state.pendingLoggin = false;
+
     },
     [loginUser.fulfilled]: (state, action) => {
       if (action.payload.msg === "Admin success") state.adminPermission = true;
@@ -174,20 +189,25 @@ export const userSlice = createSlice({
       state.loading = false;
       state.loginError = null;
       state.loggedin = true;
+      state.pendingLoggin = false;
       state.name = action.payload.name;
       state.email = action.payload.email;
     },
     // add account by admin
     [addAccount.pending]: (state) => {
       state.addAccountError = null;
+      state.pendingAddAccount = true;
     },
     [addAccount.fulfilled]: (state, action) => {
       state.addAccountError = "success";
+      state.pendingAddAccount = false;
+
     },
     [addAccount.rejected]: (state, action) => {
       console.log("Rejected : add account ");
       console.log(action.payload);
       state.addAccountError = action.payload;
+      state.pendingAddAccount = false;
     },
     // add account to carts by user
     [addAccountToCart.pending]: (state) => {
