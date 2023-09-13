@@ -68,7 +68,7 @@ const AccountDetail = () => {
           // }}
         >
           <img
-            src={`${process.env.REACT_APP_BASE_URL}/${accountTypeList[currentIndex].avatar}`}
+            src={`https://wsrv.nl/?url=${process.env.REACT_APP_BASE_URL}/${accountTypeList[currentIndex].avatar}`}
             alt="no Img"
             className="w-full max-h-[438px] md:max-h-[420px] xl:max-h-[660px] object-contain"
           />

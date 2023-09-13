@@ -9,8 +9,7 @@ const SellingAccount = (props) => {
       <motion.div className=" p-5 flex gap-x-5 bg-[#3B3B3B] rounded-[20px] relative xl:block xl:space-y-5 border-2 hover:border-orange-500 hover:shadow-orange-700 hover:cursor-pointer">
         <img
           alt="noIMG"
-          
-          src={`${process.env.REACT_APP_BASE_URL}/${avatar}`}
+          src={`https://wsrv.nl/?url=${process.env.REACT_APP_BASE_URL}/${avatar}`}
           className="w-[60px] h-[60px] lg:min-w-[60px] lg:min-h-[60px] object-cover xl:w-[120px] xl:h-[120px] xl:m-auto"
         />
         <div className="absolute rounded-full bg-[#2B2B2B] p-1 text-[#858584] font-mono text-base w-[30px] text-center h-[30px] py-auto left-[12px] top-[13px] xl:left-[20px] xl:top-0">

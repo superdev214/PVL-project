@@ -43,7 +43,7 @@ const CartItem = (props) => {
           // }}
         >
           <img
-            src={`${process.env.REACT_APP_BASE_URL}/${avatar}`}
+            src={`https://wsrv.nl/?url=${process.env.REACT_APP_BASE_URL}/${avatar}`}
             alt="no Img"
             className="w-full max-h-[438px] xl:max-h-[293px] md:max-h-[256px] 2xl:max-h-[356px]"
           />
