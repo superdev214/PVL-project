@@ -38,7 +38,7 @@ const SearchAccount = () => {
                 placeholder="Search for the one you want"
                 className="w-full py-3 pl-5 pr-4 text-[#858584] text-base font-work rounded-[20px] outline-none bg-[#3B3B3B]  focus:outline-none placeholder:text-base h-[60px]"
               />
-            </div>
+            </div>  
           </form>
         </motion.div>
       </motion.div>
